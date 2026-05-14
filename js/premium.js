@@ -1,7 +1,6 @@
 // Premium Page Logic
 
 let resultGod = null;
-let currentLang = 'en';
 let isPaid = false;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function initPremiumPage() {
   // Initialize language
-  currentLang = initI18n();
+  initI18n();
 
   // Load translations
   await loadTranslations('en');
@@ -60,14 +59,13 @@ async function initPremiumPage() {
 }
 
 function updatePremiumUI() {
-  currentLang = getCurrentLang();
   renderGodInfo();
 }
 
 function renderGodInfo() {
   if (!resultGod) return;
 
-  const lang = currentLang;
+  const lang = getCurrentLang();
 
   // Update god emoji
   document.getElementById('godEmoji').textContent = GOD_EMOJIS[resultGod.id] || '🏛️';
@@ -144,7 +142,7 @@ async function generateReport() {
   }, 2000);
 
   const userInput = document.getElementById('userInput').value.trim();
-  const lang = currentLang;
+  const lang = getCurrentLang();
 
   // Prepare request data
   const requestData = {

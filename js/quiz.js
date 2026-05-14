@@ -2,7 +2,6 @@
 
 let currentQuestion = 0;
 let answers = [];
-let currentLang = 'en';
 
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', async () => {
@@ -11,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function initQuiz() {
   // Initialize language
-  currentLang = initI18n();
+  initI18n();
 
   // Load translations
   await loadTranslations('en');
@@ -42,13 +41,12 @@ async function initQuiz() {
 }
 
 function updateQuizUI() {
-  currentLang = getCurrentLang();
   renderQuestion();
 }
 
 function renderQuestion() {
   const question = questions[currentQuestion];
-  const lang = currentLang;
+  const lang = getCurrentLang();
 
   // Update question number
   document.getElementById('currentQ').textContent = currentQuestion + 1;
