@@ -21,8 +21,8 @@ interface OracleResponse {
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
-const PROMPT_TEMPLATE_EN = `
-You are a gentle, wise oracle from ancient Greek mythology. Your task is to create a personalized oracle reading for someone whose guiding deity is ${godName}.
+function generatePromptEN(godName: string, trait: string, quote: string, userInput: string): string {
+  return `You are a gentle, wise oracle from ancient Greek mythology. Your task is to create a personalized oracle reading for someone whose guiding deity is ${godName}.
 
 ## About the Person
 - Their oracle deity is ${godName} (${trait})
@@ -54,11 +54,11 @@ Suggest 3-4 simple, practical practices to connect with ${godName}'s energy in t
 ## A Closing Blessing
 End with a brief, beautiful blessing or affirmation they can carry with them.
 
-Remember: We are all children of gods. They deserve a good life. Your words should help them feel seen, understood, and worthy.
-`;
+Remember: We are all children of gods. They deserve a good life. Your words should help them feel seen, understood, and worthy.`;
+}
 
-const PROMPT_TEMPLATE_ZH = `
-你是一位来自古希腊神话的温柔、睿智的神谕者。你的任务是为一位守护神是 ${godNameZh} 的人创建个性化的神谕解读。
+function generatePromptZH(godNameZh: string, traitZh: string, quoteZh: string, userInput: string): string {
+  return `你是一位来自古希腊神话的温柔、睿智的神谕者。你的任务是为一位守护神是 ${godNameZh} 的人创建个性化的神谕解读。
 
 ## 关于这个人
 - 他们的守护神是 ${godNameZh}（${traitZh}）
@@ -90,8 +90,8 @@ ${userInput ? `- 他们分享了这样的困惑/问题："${userInput}"` : ''}
 ## 结尾祝福
 以一个简短、美好的祝福或肯定结束，让他们可以随身携带。
 
-记住：我们都是神的孩子。他们值得好的生活。你的话语应该帮助他们感到被看见、被理解和值得。
-`;
+记住：我们都是神的孩子。他们值得好的生活。你的话语应该帮助他们感到被看见、被理解和值得。`;
+}
 
 export default async function handler(request: Request): Promise<Response> {
   // Only allow POST requests
@@ -116,14 +116,8 @@ export default async function handler(request: Request): Promise<Response> {
 
     // Generate prompt based on language
     const prompt = lang === 'zh'
-      ? PROMPT_TEMPLATE_ZH.replace(/\${godNameZh}/g, godNameZh)
-                          .replace(/\${traitZh}/g, traitZh)
-                          .replace(/\${quoteZh}/g, quoteZh)
-                          .replace(/\${userInput}/g, userInput || '')
-      : PROMPT_TEMPLATE_EN.replace(/\${godName}/g, godName)
-                           .replace(/\${trait}/g, trait)
-                           .replace(/\${quote}/g, quote)
-                           .replace(/\${userInput}/g, userInput || '');
+      ? generatePromptZH(godNameZh, traitZh, quoteZh, userInput || '')
+      : generatePromptEN(godName, trait, quote, userInput || '');
 
     // Call DeepSeek API
     const deepSeekKey = process.env.DEEPSEEK_API_KEY;
@@ -202,7 +196,7 @@ export default async function handler(request: Request): Promise<Response> {
   }
 }
 
-// Configure the Edge Function
+// Configure Edge Function
 export const config = {
   runtime: 'edge'
 };
