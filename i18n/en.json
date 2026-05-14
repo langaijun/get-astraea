@@ -15,10 +15,16 @@
     "cta": "Begin Your Journey"
   },
   "quiz": {
+    "storySubtitle": "A Journey of Discovery",
+    "storyPart1": "Long ago, in a time when gods walked among mortals, there was a young soul named Astraea. She felt lost in the vastness of the world, unsure of her purpose and place among the stars.",
+    "storyPart2": "One evening, as she sat beneath the olive grove of Mount Olympus, a whisper carried on the wind—a voice gentle yet ancient, speaking of twelve deities who watched over all hearts. Each held a fragment of the divine, a reflection of the strengths and dreams that lie within every human soul.",
+    "storyPart3": "\"Close your eyes,\" the whisper seemed to say, \"and listen. Which deity's light shines brightest in your heart? Which path feels most like your own?\"",
+    "storyPart4": "Now, the oracle awaits. Answer with honesty, and your guiding deity shall be revealed.",
     "question": "Question",
     "of": "of",
     "next": "Next",
-    "submit": "Reveal My Oracle"
+    "submit": "Reveal My Oracle",
+    "start": "Begin Your Oracle"
   },
   "result": {
     "title": "Your Oracle Revealed",

@@ -33,8 +33,21 @@ async function initQuiz() {
     updateQuizUI();
   });
 
+  // Setup start button
+  document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+
   // Setup next button
   document.getElementById('nextBtn').addEventListener('click', handleNext);
+
+  // Update translations for intro
+  updatePageTranslations();
+}
+
+function startQuiz() {
+  // Hide intro card, show quiz card
+  document.getElementById('introCard').classList.add('hidden');
+  document.getElementById('quizCard').classList.remove('hidden');
+  document.getElementById('quizCard').classList.add('fade-in');
 
   // Render first question
   renderQuestion();
