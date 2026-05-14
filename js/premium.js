@@ -1,5 +1,20 @@
 // Premium Page Logic
 
+const GOD_EMOJIS = {
+  athena: '🦉',
+  apollo: '☀️',
+  artemis: '🏹',
+  hestia: '🏠',
+  demeter: '🌾',
+  hephaestus: '⚒️',
+  hermes: '🪶',
+  aphrodite: '🌹',
+  dionysus: '🍇',
+  persephone: '🌸',
+  hebe: '🌸',
+  iris: '🌈'
+};
+
 let resultGod = null;
 let isPaid = false;
 
@@ -41,6 +56,16 @@ async function initPremiumPage() {
     generateReport();
   });
 
+  // Setup confirm payment button
+  document.getElementById('confirmPaymentBtn')?.addEventListener('click', () => {
+    if (confirm('Have you completed the PayPal payment?')) {
+      localStorage.setItem('oracle-paid', 'true');
+      isPaid = true;
+      showReportSection();
+      generateReport();
+    }
+  });
+
   // Setup generate button (if already paid)
   if (isPaid) {
     document.getElementById('paypalBtn').textContent = t('result.alreadyPaid') || 'Generate Report';
@@ -52,9 +77,8 @@ async function initPremiumPage() {
       generateReport();
     });
   } else {
-    // Setup PayPal button
-    const paypalUrl = generatePayPalUrl();
-    document.getElementById('paypalBtn').href = paypalUrl;
+    // PayPal button already has Payment Link configured in HTML
+    // User can confirm payment after completing PayPal flow
   }
 
   // Render god info
@@ -80,21 +104,6 @@ function renderGodInfo() {
   // Update placeholder and hint
   const textarea = document.getElementById('userInput');
   textarea.placeholder = t('result.inputHint') || textarea.placeholder;
-}
-
-function generatePayPalUrl() {
-  // Generate PayPal payment link
-  const params = new URLSearchParams({
-    cmd: '_xclick',
-    business: BUSINESS_EMAIL,
-    item_name: `Oracle Reading - ${resultGod.name.en}`,
-    amount: PAYMENT_AMOUNT,
-    currency_code: 'USD',
-    return: `${window.location.origin}${window.location.pathname}?payment=success`,
-    cancel_return: `${window.location.origin}${window.location.pathname}`
-  });
-
-  return `${PAYPAL_BASE_URL}?${params.toString()}`;
 }
 
 function showReportSection() {

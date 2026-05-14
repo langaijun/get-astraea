@@ -119,6 +119,16 @@
         >
           <span data-i18n="result.getReport">Get Full Report - $2.99</span>
         </a>
+
+        <!-- Payment Confirmation Button -->
+        <div class="mt-4 text-center">
+          <button
+            id="confirmPaymentBtn"
+            class="text-sm text-amber-700 hover:text-amber-900 underline transition-colors"
+          >
+            I've completed payment
+          </button>
+        </div>
       </div>
 
       <!-- Report Section -->
@@ -172,33 +182,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    const GOD_EMOJIS = {
-      athena: '🦉',
-      apollo: '☀️',
-      artemis: '🏹',
-      hestia: '🏠',
-      demeter: '🌾',
-      hephaestus: '⚒️',
-      hermes: '🪶',
-      aphrodite: '🌹',
-      dionysus: '🍇',
-      persephone: '🌸',
-      hebe: '🌸',
-      iris: '🌈'
-    };
-
-    const PAYPAL_URL = 'https://www.paypal.com/ncp/payment/FBNUG29QG9SVE';
-
-    // Check for payment success (simulated with URL param)
-    const urlParams = new URLSearchParams(window.location.search);
-    const paymentSuccess = urlParams.get('payment') === 'success';
-
-    // Store payment state
-    if (paymentSuccess) {
-      localStorage.setItem('oracle-paid', 'true');
-    }
-  </script>
   <script src="js/gods-data.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/premium.js"></script>
