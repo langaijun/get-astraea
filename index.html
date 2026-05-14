@@ -116,25 +116,25 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script>
-    // Load i18n module
     (async function() {
+      // Load translations
       await loadTranslations('en');
       await loadTranslations('zh');
 
-      // Initialize language
+      // Initialize language and update translations
       const lang = initI18n();
-
-      // Language toggle handler
-      document.getElementById('langToggle').addEventListener('click', () => {
-        toggleLanguage();
-      });
-
-      // Initial translation update
       await loadTranslations(lang);
       updatePageTranslations();
+
+      // Language toggle handler
+      document.getElementById('langToggle').addEventListener('click', async () => {
+        toggleLanguage();
+      await loadTranslations(getCurrentLang());
+        updatePageTranslations();
+      });
     })();
   </script>
-  <script src="js/i18n.js"></script>
 </body>
 </html>
