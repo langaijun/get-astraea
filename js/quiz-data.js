@@ -39,7 +39,7 @@ const questions = [
         scores: { hestia: 3, hebe: 2, aphrodite: 1 }
       },
       {
-        text: 'Nature—forests, mountains, or by the sea',
+        text: { en: 'Nature—forests, mountains, or by the sea', zh: '大自然——森林、山脉或海边' },
         scores: { artemis: 3, demeter: 2, persephone: 1 }
       },
       {
