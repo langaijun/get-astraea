@@ -74,8 +74,8 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="min-h-screen flex items-center justify-center px-4 py-12 pb-28">
-    <div class="max-w-2xl w-full">
+  <main class="min-h-screen flex items-center justify-center px-4 py-12 pb-32">
+    <div class="max-w-2xl w-full space-y-6">
       <!-- Loading State -->
       <div id="loadingState" class="text-center py-20">
         <div class="animate-spin w-12 h-12 border-4 border-amber-200 border-t-amber-500 rounded-full mx-auto mb-4"></div>
@@ -85,7 +85,7 @@
       <!-- Result Card -->
       <div id="resultCard" class="hidden">
         <!-- Header -->
-        <div class="text-center mb-8 fade-in">
+        <div class="text-center mb-6 fade-in">
           <h1 class="font-title text-3xl md:text-4xl font-bold text-amber-800 mb-2" data-i18n="result.title">
             Your Oracle Revealed
           </h1>
@@ -129,23 +129,23 @@
               <span class="ml-2">📤</span>
             </button>
           </div>
+        </div>
 
-          <!-- Unlock Full Report -->
-          <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-2xl p-6 text-center">
-            <h3 class="font-title text-xl font-bold text-amber-900 mb-2" data-i18n="result.unlockFull">
-              Unlock Your Full Oracle Reading
-            </h3>
-            <p class="text-gray-600 mb-4 text-sm" data-i18n="result.unlockDesc">
-              Get a personalized 1000-word oracle report with guidance, insights, and practices tailored to your unique spiritual path.
-            </p>
-            <a href="premium.html" class="btn-primary inline-block px-8 py-3 text-white font-semibold rounded-xl shadow-lg">
-              <span data-i18n="result.getReport">Get Full Report - $2.99</span>
-            </a>
-          </div>
+        <!-- Unlock Full Report -->
+        <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-2xl p-6 text-center card-glow">
+          <h3 class="font-title text-xl font-bold text-amber-900 mb-2" data-i18n="result.unlockFull">
+            Unlock Your Full Oracle Reading
+          </h3>
+          <p class="text-gray-600 mb-4 text-sm" data-i18n="result.unlockDesc">
+            Get a personalized 1000-word oracle report with guidance, insights, and practices tailored to your unique spiritual path.
+          </p>
+          <a id="premiumLink" href="premium.html" class="btn-primary inline-block px-8 py-3 text-white font-semibold rounded-xl shadow-lg">
+            <span data-i18n="result.getReport">Get Full Report - $2.99</span>
+          </a>
         </div>
 
         <!-- Retake Button -->
-        <div class="text-center mt-8">
+        <div class="text-center">
           <button id="retakeBtn" class="text-amber-700 hover:text-amber-900 font-medium underline transition-colors">
             <span data-i18n="common.retake">Retake Quiz</span>
           </button>
@@ -168,10 +168,12 @@
   </main>
 
   <!-- Footer -->
-  <footer class="absolute bottom-4 left-0 right-0 text-center">
-    <p class="text-amber-800/40 text-xs">
-      <span data-i18n="footer.disclaimer">For entertainment reference only.</span>
-    </p>
+  <footer class="fixed bottom-4 left-0 right-0 w-full bg-gradient-to-r from-amber-100 to-amber-50 py-3">
+    <div class="text-center">
+      <p class="text-amber-800/60 text-xs">
+        <span data-i18n="footer.disclaimer">For entertainment reference only.</span>
+      </p>
+    </div>
   </footer>
 
   <!-- Scripts -->

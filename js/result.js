@@ -23,6 +23,9 @@ async function initResultPage() {
 
   resultGod = JSON.parse(storedResult);
 
+  // Update initial translations
+  updatePageTranslations();
+
   // Setup language toggle
   document.getElementById('langToggle').addEventListener('click', () => {
     toggleLanguage();

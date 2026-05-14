@@ -27,6 +27,9 @@ async function initPremiumPage() {
   // Check payment status
   isPaid = localStorage.getItem('oracle-paid') === 'true';
 
+  // Update initial translations
+  updatePageTranslations();
+
   // Setup language toggle
   document.getElementById('langToggle').addEventListener('click', () => {
     toggleLanguage();
