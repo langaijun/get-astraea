@@ -1,0 +1,102 @@
+{
+  "common": {
+    "start": "开始你的神谕",
+    "retake": "重新测试",
+    "share": "分享结果",
+    "loading": "正在连接古老智慧...",
+    "error": "出错了",
+    "retry": "重试",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "title": "神谕的低语",
+    "subtitle": "发现你内心的温柔力量",
+    "description": "在古老智慧的温柔低语中找到力量",
+    "cta": "开启你的旅程"
+  },
+  "quiz": {
+    "question": "问题",
+    "of": "/",
+    "next": "下一题",
+    "submit": "揭示我的神谕"
+  },
+  "result": {
+    "title": "你的神谕已揭示",
+    "yourGod": "你的守护神",
+    "trait": "核心特质",
+    "quote": "你的金句",
+    "shareTitle": "分享你的神谕",
+    "unlockFull": "解锁完整神谕解读",
+    "unlockDesc": "获取个性化 1000 字神谕报告，包含指导、洞察和适合你独特精神路径的实践方法。",
+    "getReport": "获取完整报告 - $2.99",
+    "loading": "神谕正在低语...",
+    "generating": "解读低语中...",
+    "reportTitle": "你的神谕报告",
+    "reportSections": {
+      "overview": "概述",
+      "strengths": "你的优势",
+      "challenges": "成长机会",
+      "practices": "日常实践"
+    },
+    "inputPlaceholder": "你希望获得什么方面的指导？（可选）",
+    "inputHint": "分享任何困惑、问题或你希望神谕回答的生活领域...",
+    "generateBtn": "生成神谕报告",
+    "waitForPayment": "完成支付后生成报告",
+    "alreadyPaid": "生成报告",
+    "expand": "展开阅读",
+    "collapse": "收起"
+  },
+  "footer": {
+    "disclaimer": "供娱乐参考。",
+    "weAreGods": "我们都是神的孩子，你值得好的生活。"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "updated": "最后更新：2026年5月",
+    "collect": "我们收集什么",
+    "use": "我们如何使用",
+    "retention": "数据保留",
+    "rights": "你的权利",
+    "thirdParty": "第三方",
+    "contact": "联系我们",
+    "collectContent": {
+      "answers": "答题结果：12 题选择（保存在浏览器 sessionStorage）",
+      "language": "语言偏好",
+      "input": "用户输入：可选的困惑/问题（付费版）"
+    },
+    "noServer": "所有数据存储在你的设备上。我们不在服务器上收集或存储你的个人信息。",
+    "useContent": "用于生成你的神谕结果和报告，以及改进题目设计。",
+    "retentionContent": {
+      "answers": "答题结果：关闭标签页即清除",
+      "language": "语言偏好：存储在 localStorage，直到你删除",
+      "input": "用户输入：报告生成后不保存"
+    },
+    "rightsContent": "你可以随时清除浏览器数据，或关闭标签页退出。",
+    "thirdPartyContent": "我们使用 PayPal 处理支付（请查阅 PayPal 隐私政策），以及 DeepSeek API 生成内容（你的输入安全传输）。",
+    "contactContent": "有问题？联系：langaijun@foxmail.com，Twitter: @wangwei111223"
+  },
+  "disclaimer": {
+    "title": "免责声明",
+    "entertainment": "仅供娱乐参考",
+    "not": "本神谕测评仅供娱乐和自我反思参考。它不是：",
+    "notItems": [
+      "专业的心理或医疗建议",
+      "专业咨询的替代品",
+      "任何结果的保证"
+    ],
+    "ai": "AI 生成内容",
+    "aiContent": "付费报告由 AI（DeepSeek）生成。虽然我们力求准确和有帮助：",
+    "aiItems": [
+      "AI 可能偶尔提供不完整或不准确的信息",
+      "你对自己的决定和行动负责",
+      "如果你正在经历严重的心理健康问题，请寻求专业帮助"
+    ],
+    "accuracy": "数据准确性",
+    "accuracyContent": "你的测评结果反映你提供的具体问题和答案。不同的答案可能产生不同的结果。",
+    "warranty": "无保证",
+    "warrantyContent": "我们不对内容的完整性、准确性或可靠性，或服务的可用性或功能做出任何明示或暗示的保证。",
+    "contact": "联系我们",
+    "contactContent": "有问题或疑虑？联系：langaijun@foxmail.com，Twitter: @wangwei111223",
+    "closing": "我们都是神的孩子。你值得好的生活。"
+  }
+}

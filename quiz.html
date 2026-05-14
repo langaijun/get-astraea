@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Oracle's Whisper Quiz - Answer 12 questions to discover your guiding deity">
+  <title>Quiz | Oracle's Whisper | 神谕的低语</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #F59E0B;
+      --background: #FEF3C7;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 50%, #FEF3C7 100%);
+      min-height: 100vh;
+    }
+    .font-title {
+      font-family: 'Cinzel', serif;
+    }
+    .card-glow {
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+    }
+    .option-btn {
+      transition: all 0.3s ease;
+    }
+    .option-btn:hover {
+      transform: translateX(8px);
+      background-color: #FEF3C7;
+    }
+    .option-btn.selected {
+      background-color: #F59E0B;
+      color: white;
+      border-color: #D97706;
+    }
+    .progress-bar {
+      transition: width 0.5s ease;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+  <!-- Language Toggle -->
+  <nav class="absolute top-4 right-4 z-10">
+    <button id="langToggle" class="px-4 py-2 bg-white/80 backdrop-blur rounded-full text-sm font-medium hover:bg-white transition-colors card-glow">
+      EN / 中
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="max-w-2xl w-full">
+      <!-- Quiz Card -->
+      <div class="bg-white/90 backdrop-blur rounded-3xl p-6 md:p-10 card-glow">
+        <!-- Header -->
+        <div class="text-center mb-6">
+          <h1 class="font-title text-2xl md:text-3xl font-bold text-amber-800 mb-2">
+            <span data-i18n="hero.title">Oracle's Whisper</span>
+          </h1>
+          <p class="text-gray-500 text-sm" data-i18n="result.shareTitle">Answer 12 questions to discover your oracle</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-8">
+          <div class="flex justify-between text-sm text-gray-500 mb-2">
+            <span><span id="currentQ">1</span> <span data-i18n="quiz.of">of</span> <span id="totalQ">12</span></span>
+            <span id="progressPercent">8%</span>
+          </div>
+          <div class="h-2 bg-amber-100 rounded-full overflow-hidden">
+            <div id="progressBar" class="progress-bar h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full" style="width: 8.33%"></div>
+          </div>
+        </div>
+
+        <!-- Question Container -->
+        <div id="questionContainer" class="fade-in">
+          <!-- Question -->
+          <h2 id="questionText" class="text-xl md:text-2xl font-medium text-gray-800 mb-6">
+            Loading question...
+          </h2>
+
+          <!-- Options -->
+          <div id="optionsContainer" class="space-y-3">
+            <!-- Options will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="mt-8 flex justify-center">
+          <button id="nextBtn" class="btn-primary px-8 py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold rounded-xl shadow-lg opacity-50 cursor-not-allowed transition-all hover:shadow-xl" disabled>
+            <span data-i18n="quiz.next">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-4 left-0 right-0 text-center">
+    <p class="text-amber-800/40 text-xs">
+      <span data-i18n="footer.disclaimer">For entertainment reference only.</span>
+      <span class="mx-2">|</span>
+      <span data-i18n="footer.weAreGods">We are all children of gods.</span>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/gods-data.js"></script>
+  <script src="js/quiz-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>
