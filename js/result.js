@@ -150,7 +150,7 @@ function renderResult() {
   document.getElementById('errorState').classList.add('hidden');
   document.getElementById('resultCard').classList.remove('hidden');
 
-  // Update god avatar (circle + share button overlay in #godAvatar)
+  // Update god avatar (emoji circle in #godAvatar; share sits on .god-card corner)
   const avatarIconEl = document.getElementById('godAvatarIcon');
   if (avatarIconEl) {
     avatarIconEl.textContent = GOD_EMOJIS[resultGod.id] || '🏛️';

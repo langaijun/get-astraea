@@ -100,21 +100,22 @@
         </div>
 
         <!-- God Card -->
-        <div class="god-card rounded-3xl p-6 md:p-10 card-glow fade-in">
-          <!-- God Avatar + compact share (top-right of avatar) -->
-          <div id="godAvatar" class="relative mx-auto mb-4 w-[120px]">
+        <div class="god-card relative rounded-3xl p-6 md:p-10 card-glow fade-in">
+          <button
+            id="shareBtn"
+            type="button"
+            class="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-amber-200 bg-white/95 text-lg shadow-sm hover:bg-amber-50 transition-colors md:top-6 md:right-6"
+            title="Share"
+            aria-label="Share"
+          >
+            📤
+          </button>
+
+          <!-- God Avatar -->
+          <div id="godAvatar" class="mx-auto mb-4 flex justify-center">
             <div id="godAvatarIcon" class="god-avatar" aria-hidden="true">
               🏛️
             </div>
-            <button
-              id="shareBtn"
-              type="button"
-              class="absolute -right-1 -top-1 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-amber-200 bg-white/95 text-lg shadow-sm hover:bg-amber-50 transition-colors"
-              title="Share"
-              aria-label="Share"
-            >
-              📤
-            </button>
           </div>
 
           <!-- God Name -->
