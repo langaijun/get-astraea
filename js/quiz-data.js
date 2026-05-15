@@ -5,8 +5,8 @@ const questions = [
   {
     id: 1,
     question: {
-      en: 'Zeus suddenly @everyone in the group: "Everyone submit a PPT next week, topic: My Internal Rolling Achievements"',
-      zh: '宙斯突然在群里@所有人："下周每人交一份PPT，主题是\'我的内卷成就\'"'
+      en: 'Zeus suddenly @everyone in the group: "Everyone submit a PPT next week, topic: My Internal Rolling Achievements". What would you do?',
+      zh: '宙斯突然在群里@所有人："下周每人交一份PPT，主题是我的内卷成就". 你会做什么？'
     },
     options: [
       {
@@ -30,8 +30,8 @@ const questions = [
   {
     id: 2,
     question: {
-      en: 'Hera posts on Moments: "Today\'s beauty, even Aphrodite fell silent"',
-      zh: '赫拉发朋友圈："今天的美，连阿芙洛狄忒都沉默了"'
+      en: 'Hera posts on Moments: "Today\'s beauty, even Aphrodite fell silent". What would you do?',
+      zh: '赫拉发朋友圈："今天的美，连阿芙洛狄忒都沉默了". 你会做什么？'
     },
     options: [
       {
@@ -55,8 +55,8 @@ const questions = [
   {
     id: 3,
     question: {
-      en: 'Ares pulls you into a mystery group, name: "Monday 8AM Resistance"',
-      zh: '阿瑞斯把你拉进一个神秘群，群名"周一早八摸鱼联盟"'
+      en: 'Ares pulls you into a mystery group, name: "Monday 8AM Resistance". What would you do?',
+      zh: '阿瑞斯把你拉进一个神秘群，群名"周一早八摸鱼联盟". 你会做什么？'
     },
     options: [
       {
@@ -80,16 +80,16 @@ const questions = [
   {
     id: 4,
     question: {
-      en: 'Poseidon invites you to the underworld to experience "996 blessings", saying the overtime atmosphere there is great',
-      zh: '波塞冬邀请你去冥界体验"996福报"，说那里加班氛围很好'
+      en: 'Poseidon invites you: "Let\'s go experience overtime blessings at the seaside office, the night view is beautiful there". What would you do?',
+      zh: '波塞冬邀请你："去海边办公室体验加班福报吧，那边夜景很美". 你会做什么？'
     },
     options: [
       {
-        text: { en: '"Can you let my daughter out first? Spring is coming soon 🌸"', zh: '"能不能让我女儿先出来？春天快到了🌸"' },
+        text: { en: '"Can we go when the flowers bloom by the sea? Spring is coming soon 🌸"', zh: '"能不能等海边花开的时候去？春天快到了🌸"' },
         scores: { demeter: 3, persephone: 3 }
       },
       {
-        text: { en: 'Post on Moments: "Underworld team building invites you, rainbow benefits ☀️🌈"', zh: '发朋友圈："冥界团建邀你，有彩虹福利☀️🌈"' },
+        text: { en: 'Post on Moments: "Seaside overtime invites you, rainbow snacks included ☀️🌈"', zh: '发朋友圈："海边加班邀你，有彩虹零食☀️🌈"' },
         scores: { apollo: 3, iris: 3 }
       },
       {
@@ -105,8 +105,8 @@ const questions = [
   {
     id: 5,
     question: {
-      en: 'Dionysus posts in the group: "Who wants to come to my house for a party tonight?"',
-      zh: '狄俄尼索斯在群里发："谁今晚来我家开派对？"'
+      en: 'Dionysus posts in the group: "Who wants to come to my house for a party tonight?". What would you do?',
+      zh: '狄俄尼索斯在群里发："谁今晚来我家开派对？". 你会做什么？'
     },
     options: [
       {
@@ -130,8 +130,8 @@ const questions = [
   {
     id: 6,
     question: {
-      en: 'Poseidon posts in the group: "Who wants to go with me to open a supermarket underwater?"',
-      zh: '波塞冬在群里发："谁愿意和我一起去海底开超市？"'
+      en: 'Poseidon posts in the group: "Who wants to go with me to open a supermarket underwater?". What would you do?',
+      zh: '波塞冬在群里发："谁愿意和我一起去海底开超市？". 你会做什么？'
     },
     options: [
       {
@@ -155,8 +155,8 @@ const questions = [
   {
     id: 7,
     question: {
-      en: 'Zeus announces: To improve efficiency, weekly reports must be submitted before Friday end of day',
-      zh: '宙斯宣布：为了提高效率，每周五下班前必须交周报'
+      en: 'Zeus announces: To improve efficiency, weekly reports must be submitted before Friday end of day. What would you do?',
+      zh: '宙斯宣布：为了提高效率，每周五下班前必须交周报. 你会做什么？'
     },
     options: [
       {
@@ -180,8 +180,8 @@ const questions = [
   {
     id: 8,
     question: {
-      en: 'Ares posts in the group: "Who\'s going to the gym today?"',
-      zh: '阿瑞斯在群里发："今天去健身房的有谁？"'
+      en: 'Ares posts in the group: "Who\'s going to the gym today?". What would you do?',
+      zh: '阿瑞斯在群里发："今天去健身房的有谁？". 你会做什么？'
     },
     options: [
       {
@@ -205,8 +205,8 @@ const questions = [
   {
     id: 9,
     question: {
-      en: 'Hera posts on Moments: "Another day troubled by beauty"',
-      zh: '赫发朋友圈："今天又是被美貌烦恼的一天"'
+      en: 'Hera posts on Moments: "Another day troubled by beauty". What would you do?',
+      zh: '赫拉发朋友圈："今天又是被美貌烦恼的一天". 你会做什么？'
     },
     options: [
       {
@@ -230,8 +230,8 @@ const questions = [
   {
     id: 10,
     question: {
-      en: 'Zeus suddenly announces: To enhance cohesion, everyone must attend annual team building',
-      zh: '宙斯突然宣布：为了增强凝聚力，每个人必须参加年度团建'
+      en: 'Zeus suddenly announces: To enhance cohesion, everyone must attend annual team building. What would you do?',
+      zh: '宙斯突然宣布：为了增强凝聚力，每个人必须参加年度团建. 你会做什么？'
     },
     options: [
       {
@@ -251,8 +251,8 @@ const questions = [
   {
     id: 11,
     question: {
-      en: 'Your friend asks: "Where do you want to go this weekend?"',
-      zh: '你的朋友问："周末想去哪玩？"'
+      en: 'Your friend asks: "Where do you want to go this weekend?". What would you do?',
+      zh: '你的朋友问："周末想去哪玩？". 你会做什么？'
     },
     options: [
       {
@@ -273,7 +273,7 @@ const questions = [
     id: 12,
     question: {
       en: 'Faced with a table of dishes, what do you reach for first?',
-      zh: '面对一桌菜，你首先拿什么？'
+      zh: '面对一桌菜，你会先拿什么？'
     },
     options: [
       {
@@ -281,15 +281,15 @@ const questions = [
         scores: { hestia: 3, hebe: 3 }
       },
       {
-        text: { en: 'First observe what everyone else is eating, then decide', zh: '"先观察每个人吃什么，再决定"' },
+        text: { en: 'First observe what everyone else is eating, then decide', zh: '先观察每个人吃什么，再决定' },
         scores: { athena: 3, hermes: 3 }
       },
       {
-        text: { en: 'Exquisite little pastries 🌹', zh: '"精致的小点心🌹"' },
+        text: { en: 'Exquisite little pastries 🌹', zh: '精致的小点心🌹' },
         scores: { hephaestus: 3, aphrodite: 3 }
       },
       {
-        text: { en: 'Vegetables and fruits I grew myself 🥗🌸', zh: '"自己种的蔬菜和水果🥗🌸"' },
+        text: { en: 'Vegetables and fruits I grew myself 🥗🌸', zh: '自己种的蔬菜和水果🥗🌸' },
         scores: { artemis: 3, demeter: 3 }
       }
     ]
