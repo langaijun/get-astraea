@@ -215,7 +215,7 @@ function renderFreeReading() {
 
   const mythRaw = zhEmDashToColon(stripMythologyHeading(data.mythology), lang);
   const mythHtml = `
-    <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl p-6 mb-6">
+    <div class="bg-white rounded-xl p-6 mb-6">
       <p class="text-gray-600 leading-relaxed text-base">
         ${mythRaw.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
       </p>
