@@ -114,13 +114,20 @@ function renderResult() {
   document.getElementById('errorState').classList.add('hidden');
   document.getElementById('resultCard').classList.remove('hidden');
 
-  // Update god avatar (emoji circle lives inside #godAvatar next to share button)
+  // Update god avatar (circle + share button overlay in #godAvatar)
   const avatarIconEl = document.getElementById('godAvatarIcon');
   if (avatarIconEl) {
     avatarIconEl.textContent = GOD_EMOJIS[resultGod.id] || '🏛️';
     avatarIconEl.style.background = resultGod.color.includes('gradient')
       ? resultGod.color
       : `${resultGod.color}30`;
+  }
+
+  const shareBtn = document.getElementById('shareBtn');
+  if (shareBtn) {
+    const shareLabel = t('result.shareTitle') || 'Share';
+    shareBtn.setAttribute('aria-label', shareLabel);
+    shareBtn.setAttribute('title', shareLabel);
   }
 
   // Update god name
@@ -150,35 +157,7 @@ function renderFreeReading() {
 
   const contentDiv = document.getElementById('freeReadingContent');
 
-  // Get emoji for title
-  const emojiMap = {
-    athena: '🦉',
-    apollo: '☀️',
-    artemis: '🏹',
-    hestia: '🏠',
-    demeter: '🌾',
-    hephaestus: '⚒️',
-    hermes: '🪶',
-    aphrodite: '🌹',
-    dionysus: '🍇',
-    persephone: '🌸',
-    hebe: '🌸',
-    iris: '🌈'
-  };
-  const emoji = emojiMap[godId] || '🏛️';
-
   const data = reading[lang];
-  const titleHtml = `
-    <div class="text-center mb-4">
-      <span class="text-4xl">${emoji}</span>
-    </div>
-    <div class="text-center mb-6">
-      <h4>
-        ${data.title}
-      </h4>
-      <p>${data.subtitle}</p>
-    </div>
-  `;
 
   const descHtml = `
     <div class="bg-amber-50 rounded-xl p-6 mb-6">
@@ -190,10 +169,7 @@ function renderFreeReading() {
 
   const traitsHtml = `
     <div class="bg-white/80 rounded-xl p-6 mb-6">
-      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">
-        ${t('result.yourTraits') || 'Your Core Traits'}
-      </h5>
-      <ul class="text-gray-700 leading-relaxed space-y-2 ml-6">
+      <ul class="text-gray-700 leading-relaxed space-y-2 ml-4">
         ${data.traits.split('\n').map(t => `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`).join('')}
       </ul>
     </div>
@@ -201,9 +177,6 @@ function renderFreeReading() {
 
   const mythHtml = `
     <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl p-6 mb-6">
-      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">
-        ${t('result.mythMapping') || 'Mythological Mapping'}
-      </h5>
       <p class="text-gray-600 leading-relaxed text-sm">
         ${data.mythology.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
       </p>
@@ -212,16 +185,13 @@ function renderFreeReading() {
 
   const adviceHtml = `
     <div class="bg-white rounded-xl p-6 border-2 border-amber-200">
-      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">
-        ${t('result.lifeAdvice') || 'Life Advice'}
-      </h5>
-      <ul class="text-gray-700 leading-relaxed space-y-3">
+      <ul class="text-gray-700 leading-relaxed space-y-3 ml-4">
         ${data.advice.split('\n').map(a => `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${a.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`).join('')}
       </ul>
     </div>
   `;
 
-  contentDiv.innerHTML = titleHtml + descHtml + traitsHtml + mythHtml + adviceHtml;
+  contentDiv.innerHTML = descHtml + traitsHtml + mythHtml + adviceHtml;
 }
 
 function setupPayPalButton() {
