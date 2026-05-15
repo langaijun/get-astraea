@@ -3,7 +3,7 @@
 let resultGod = null;
 
 // Static import for free interpretations
-const { freeInterpretations } = require('./god-templates.js');
+import { freeInterpretations } from './god-templates.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   await initResultPage();

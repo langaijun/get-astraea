@@ -1,11 +1,10 @@
-// Quiz Data - 12 Questions with Options
-// Each option corresponds to specific gods (see GOD_MAPPING.md)
+const { freeInterpretations } = require('./god-templates.js');
 
 const questions = [
   {
     id: 1,
     question: {
-      en: 'Zeus suddenly @everyone in the group: "Everyone submit a PPT next week, topic: My Internal Rolling Achievements". What would you do?',
+      en: 'Zeus suddenly @everyone in a group: "Everyone submit a PPT next week, topic: My Internal Rolling Achievements". What would you do?',
       zh: '宙斯突然在群里@所有人："下周每人交一份PPT，主题是我的内卷成就". 你会做什么？'
     },
     options: [
@@ -80,12 +79,12 @@ const questions = [
   {
     id: 4,
     question: {
-      en: 'Poseidon invites you: "Let\'s go experience overtime blessings at the seaside office, the night view is beautiful there". What would you do?',
+      en: 'Poseidon invites you: "Let\'s go experience overtime blessings at the seaside office, night view is beautiful there". What would you do?',
       zh: '波塞冬邀请你："去海边办公室体验加班福报吧，那边夜景很美". 你会做什么？'
     },
     options: [
       {
-        text: { en: '"Can we go when the flowers bloom by the sea? Spring is coming soon"', zh: '"能不能等海边花开的时候去？春天快到了"' },
+        text: { en: '"Can we go when to flowers bloom by the sea? Spring is coming soon"', zh: '"能不能等海边花开的时候去？春天快到了"' },
         scores: { demeter: 3, persephone: 3 }
       },
       {
@@ -105,7 +104,7 @@ const questions = [
   {
     id: 5,
     question: {
-      en: 'Dionysus posts in the group: "Who wants to come to my house for a party tonight?". What would you do?',
+      en: 'Dionysus posts in to group: "Who wants to come to my house for a party tonight?". What would you do?',
       zh: '狄俄尼索斯在群里发："谁今晚来我家开派对？". 你会做什么？'
     },
     options: [
@@ -122,7 +121,7 @@ const questions = [
         scores: { hephaestus: 3 }
       },
       {
-        text: { en: 'I\'m in!', zh: '我来！' },
+        text: { en: '"I\'m in!"', zh: '"我来！' },
         scores: { aphrodite: 3 }
       }
     ]
@@ -130,12 +129,12 @@ const questions = [
   {
     id: 6,
     question: {
-      en: 'Poseidon posts in the group: "Who wants to go with me to open a seaside guesthouse?". What would you do?',
+      en: 'Poseidon posts in to group: "Who wants to go with me to open a seaside guesthouse?". What would you do?',
       zh: '波塞冬在群里发："谁愿意和我一起去海边开民宿？". 你会做什么？'
     },
     options: [
       {
-        text: { en: '"Can I plant a small vegetable garden in the courtyard?"', zh: '"我能在院子里种点小菜吗？"' },
+        text: { en: '"Can I plant a small vegetable garden in to courtyard?"', zh: '"我能在院子里种点小菜吗？"' },
         scores: { demeter: 3, persephone: 3 }
       },
       {
@@ -180,7 +179,7 @@ const questions = [
   {
     id: 8,
     question: {
-      en: 'Ares posts in the group: "Who\'s going to the gym today?". What would you do?',
+      en: 'Ares posts in to group: "Who\'s going to the gym today?". What would you do?',
       zh: '阿瑞斯在群里发："今天去健身房的有谁？". 你会做什么？'
     },
     options: [
@@ -189,7 +188,7 @@ const questions = [
         scores: { athena: 3, apollo: 3 }
       },
       {
-        text: { en: '"I\'m going for a run,顺便看看春天的花"', zh: '"我去跑步，顺便看看春天的花"' },
+        text: { en: '"I\'m going for a run, see spring flowers bloom"', zh: '"我去跑步，顺便看看春天的花"' },
         scores: { artemis: 3, persephone: 3 }
       },
       {
@@ -215,7 +214,7 @@ const questions = [
       },
       {
         text: { en: '"How about have a beauty party at my house?"', zh: '"来我家开个美貌派对吧！"' },
-        scores: { aphrodite: 3, dionysus: 3 }
+        scores: { apollo: 3, hebe: 3 }
       },
       {
         text: { en: '"Can beauty add points? I\'m starting to grind"', zh: '"美貌能加分吗？我要开始卷了"' },
@@ -243,7 +242,7 @@ const questions = [
         scores: { demeter: 3, hestia: 3 }
       },
       {
-        text: { en: '"I can help plan the process, design posters, and host"', zh: '"我可以帮忙策划流程、设计海报、当主持人"' },
+        text: { en: '"I can help you plan a process, design posters, and host"', zh: '"我可以帮忙策划流程、设计海报、当主持人"' },
         scores: { aphrodite: 3, athena: 3, apollo: 3 }
       }
     ]
@@ -256,7 +255,7 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"Go to the forest park, see the spring flowers"', zh: '"Go to the forest park, see the spring flowers"' },
+        text: { en: '"Go to the forest park, see spring flowers bloom"', zh: '"去森林公园，看看春天的花"' },
         scores: { artemis: 3, persephone: 3 }
       },
       {
@@ -277,7 +276,7 @@ const questions = [
     },
     options: [
       {
-        text: { en: 'Soup and rice, warm the stomach first', zh: '汤和米饭，先暖暖胃' },
+        text: { en: 'Soup and rice, warm to stomach first', zh: '汤和米饭，先暖暖胃' },
         scores: { hestia: 3, hebe: 3 }
       },
       {
