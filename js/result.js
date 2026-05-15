@@ -2,6 +2,22 @@
 
 let resultGod = null;
 
+// God emojis for display
+const GOD_EMOJIS = {
+  athena: '🦉',
+  apollo: '☀️',
+  artemis: '🏹',
+  hestia: '🏠',
+  demeter: '🌾',
+  hephaestus: '⚒️',
+  hermes: '🪶',
+  aphrodite: '🌹',
+  dionysus: '🍇',
+  persephone: '🌸',
+  hebe: '🌸',
+  iris: '🌈'
+};
+
 // Static import for free interpretations
 import { freeInterpretations } from './god-templates.js';
 
@@ -89,7 +105,7 @@ function renderResult() {
 
   // Update god avatar
   const avatarEl = document.getElementById('godAvatar');
-  avatarEl.textContent = godEmoji;
+  avatarEl.textContent = GOD_EMOJIS[resultGod.id] || '🏛️';
   avatarEl.style.background = resultGod.color.includes('gradient')
     ? resultGod.color
     : `${resultGod.color}30`;
