@@ -88,7 +88,6 @@ function renderResult() {
   document.getElementById('resultCard').classList.remove('hidden');
 
   // Update god avatar
-  const godEmoji = GOD_EMOJIS[resultGod.id] || '🏛️';
   const avatarEl = document.getElementById('godAvatar');
   avatarEl.textContent = godEmoji;
   avatarEl.style.background = resultGod.color.includes('gradient')
