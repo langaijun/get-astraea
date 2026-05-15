@@ -207,6 +207,7 @@ function renderFreeReading() {
 
   const traitsHtml = `
     <div class="bg-white/80 rounded-xl p-6 mb-6">
+      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">${t('result.yourTraits') || 'Your Core Traits'}</h5>
       <ul class="text-gray-700 leading-relaxed space-y-2 ml-4">
         ${formatTraitsOrAdviceBlock(data.traits, lang)}
       </ul>
@@ -224,6 +225,7 @@ function renderFreeReading() {
 
   const adviceHtml = `
     <div class="bg-white rounded-xl p-6 border-2 border-amber-200">
+      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">${t('result.lifeAdvice') || 'Life Advice'}</h5>
       <ul class="text-gray-700 leading-relaxed space-y-3 ml-4">
         ${formatTraitsOrAdviceBlock(data.advice, lang)}
       </ul>
