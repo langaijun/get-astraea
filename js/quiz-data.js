@@ -256,7 +256,7 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"Go to the forest park, see the spring flowers"', zh: '"去森林公园，看看春天的花"' },
+        text: { en: '"Go to the forest park, see the spring flowers"', zh: '"Go to the forest park, see the spring flowers"' },
         scores: { artemis: 3, persephone: 3 }
       },
       {
