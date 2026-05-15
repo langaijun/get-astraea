@@ -104,6 +104,42 @@ function updateResultUI() {
   renderResult();
 }
 
+/** Strip leading "**神话映射**：" / "**Mythological Mapping**:" from template mythology field */
+function stripMythologyHeading(text) {
+  if (!text) return '';
+  return text.replace(/^\*\*(神话映射|Mythological Mapping)\*\*[：:]\s*\n?/m, '').trimStart();
+}
+
+/** Chinese copy: em dash —— → colon ： */
+function zhEmDashToColon(text, lang) {
+  if (lang !== 'zh' || !text) return text;
+  return text.replace(/——/g, '：');
+}
+
+/** Markdown list "- " prefix (traits / advice lines) */
+function stripLeadingListDash(line) {
+  if (!line) return line;
+  return line.replace(/^\s*-\s+/, '').trim();
+}
+
+/** Skip standalone section title lines like "**你的核心特质**：" */
+function isSectionHeaderOnlyLine(line) {
+  return /^\*\*[^*]+\*\*[：:]\s*$/.test((line || '').trim());
+}
+
+function formatTraitsOrAdviceBlock(raw, lang) {
+  return raw
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l && !isSectionHeaderOnlyLine(l))
+    .map((l) => {
+      let line = stripLeadingListDash(l);
+      line = zhEmDashToColon(line, lang);
+      return `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`;
+    })
+    .join('');
+}
+
 function renderResult() {
   if (!resultGod) return;
 
@@ -159,10 +195,12 @@ function renderFreeReading() {
 
   const data = reading[lang];
 
+  const descriptionHtml = zhEmDashToColon(data.description, lang).replace(/\n/g, '<br>');
+
   const descHtml = `
     <div class="bg-amber-50 rounded-xl p-6 mb-6">
       <p class="text-gray-700 leading-relaxed">
-        ${data.description.replace(/\n/g, '<br>')}
+        ${descriptionHtml}
       </p>
     </div>
   `;
@@ -170,15 +208,16 @@ function renderFreeReading() {
   const traitsHtml = `
     <div class="bg-white/80 rounded-xl p-6 mb-6">
       <ul class="text-gray-700 leading-relaxed space-y-2 ml-4">
-        ${data.traits.split('\n').map(t => `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`).join('')}
+        ${formatTraitsOrAdviceBlock(data.traits, lang)}
       </ul>
     </div>
   `;
 
+  const mythRaw = zhEmDashToColon(stripMythologyHeading(data.mythology), lang);
   const mythHtml = `
     <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl p-6 mb-6">
-      <p class="text-gray-600 leading-relaxed text-sm">
-        ${data.mythology.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
+      <p class="text-gray-600 leading-relaxed text-base">
+        ${mythRaw.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
       </p>
     </div>
   `;
@@ -186,7 +225,7 @@ function renderFreeReading() {
   const adviceHtml = `
     <div class="bg-white rounded-xl p-6 border-2 border-amber-200">
       <ul class="text-gray-700 leading-relaxed space-y-3 ml-4">
-        ${data.advice.split('\n').map(a => `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${a.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`).join('')}
+        ${formatTraitsOrAdviceBlock(data.advice, lang)}
       </ul>
     </div>
   `;
