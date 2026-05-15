@@ -1,4 +1,3 @@
-const { freeInterpretations } = require('./god-templates.js');
 
 const questions = [
   {
@@ -299,3 +298,5 @@ const questions = [
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = questions;
 }
+
+// Export for use in other files
