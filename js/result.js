@@ -191,7 +191,7 @@ function renderFreeReading() {
     </div>
   `;
 
-  contentDiv.innerHTML = descHtml + traitsHtml + mythHtml + adviceHtml;
+  contentDiv.innerHTML = mythHtml + descHtml + traitsHtml + adviceHtml;
 }
 
 function setupPayPalButton() {
