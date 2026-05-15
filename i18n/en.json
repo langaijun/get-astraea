@@ -36,31 +36,19 @@
     "trait": "Core Trait",
     "quote": "Your Golden Message",
     "shareTitle": "Share Your Oracle",
+    "freeReading": "Your Oracle Reading",
     "unlockFull": "Unlock Your Full Oracle Reading",
     "unlockDesc": "Get a personalized 1000 word oracle report with guidance, insights, and practices tailored to your unique spiritual path.",
     "getReport": "Get Full Report - $2.99",
     "loading": "The oracle is speaking...",
-    "generating": "Interpreting the whispers...",
+    "generating": "Interpreting whispers...",
     "reportTitle": "Your Oracle Report",
     "yourTraits": "Your Core Traits",
     "mythMapping": "Mythological Mapping",
     "lifeAdvice": "Life Advice"
-    "reportSections": {
-      "overview": "Overview",
-      "strengths": "Your Strengths",
-      "challenges": "Growth Opportunities",
-      "practices": "Daily Practices"
-    },
-    "inputPlaceholder": "What would you like guidance on? (Optional)",
-    "inputHint": "Share any confusion, questions, or areas of life you would like the oracle to address...",
-    "generateBtn": "Generate Oracle Report",
-    "waitForPayment": "Complete payment to generate your report",
-    "alreadyPaid": "Generate Report",
-    "expand": "Read More",
-    "collapse": "Show Less"
   },
   "footer": {
-    "disclaimer": "For entertainment reference only.",
+    "disclaimer": "For entertainment reference only. | We are all children of gods, you deserve a good life.",
     "weAreGods": "We are all children of gods, you deserve a good life."
   },
   "privacy": {
@@ -78,15 +66,15 @@
       "input": "User input: Optional concerns/questions (paid version)"
     },
     "noServer": "All data is stored on your device. We do not collect or store your personal information on our servers.",
-    "useContent": "To generate your oracle result and report, and to improve question design and accuracy.",
+    "useContent": "To generate your oracle result and report, and to improve question design.",
     "retentionContent": {
       "answers": "Quiz answers: Cleared when you close browser tab",
       "language": "Language preference: Stored in localStorage until you delete it",
       "input": "User input: Not stored after report is generated"
     },
-    "rightsContent": "You may clear your browser data at any time, or opt out of any service by closing the tab.",
-    "thirdPartyContent": "We use PayPal for payment processing (please review PayPal's privacy policy) and DeepSeek API for AI generation (your input is sent securely).",
-    "contactContent": "Questions? Contact us at: langaijun@foxmail.com, Twitter: @wangwei111223"
+    "rightsContent": "You may clear your browser data at any time, or opt out of any service by closing browser tab.",
+    "thirdPartyContent": "We use PayPal for payment processing (please review PayPal's privacy policy), and DeepSeek API for content generation (your input is transmitted securely).",
+    "contactContent": "Questions or concerns? Contact us at: langaijun@foxmail.com, Twitter: @wangwei111223"
   },
   "disclaimer": {
     "title": "Disclaimer",
@@ -107,7 +95,7 @@
     "accuracy": "Data Accuracy",
     "accuracyContent": "Your quiz result reflects specific questions and answers you provided. Different answers may yield different results.",
     "warranty": "No Warranties",
-    "warrantyContent": "We make no warranties, expressed or implied, about the completeness, accuracy, or reliability of content, or the availability or functionality of service.",
+    "warrantyContent": "We make no warranties, expressed or implied, about the completeness, accuracy, or reliability of content, or of the availability or functionality of service.",
     "contact": "Contact",
     "contactContent": "Questions or concerns? Contact us at: langaijun@foxmail.com, Twitter: @wangwei111223",
     "closing": "We are all children of gods. You deserve a good life."

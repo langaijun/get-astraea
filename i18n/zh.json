@@ -36,6 +36,7 @@
     "trait": "核心特质",
     "quote": "你的金句",
     "shareTitle": "分享你的神谕",
+    "freeReading": "你的神谕解读",
     "unlockFull": "解锁完整神谕解读",
     "unlockDesc": "获取个性化 1000 字神谕报告，包含指导、洞察和适合你独特精神路径的实践方法。",
     "getReport": "获取完整报告 - $2.99",
@@ -45,22 +46,9 @@
     "yourTraits": "你的核心特质",
     "mythMapping": "神话映射",
     "lifeAdvice": "生活建议"
-    "reportSections": {
-      "overview": "概述",
-      "strengths": "你的优势",
-      "challenges": "成长机会",
-      "practices": "日常实践"
-    },
-    "inputPlaceholder": "你希望获得什么方面的指导？（可选）",
-    "inputHint": "分享任何困惑、问题或你希望神谕回答的生活领域...",
-    "generateBtn": "生成神谕报告",
-    "waitForPayment": "完成支付后生成报告",
-    "alreadyPaid": "生成报告",
-    "expand": "展开阅读",
-    "collapse": "收起"
   },
   "footer": {
-    "disclaimer": "供娱乐参考。",
+    "disclaimer": "仅供娱乐参考 | 我们都是神的孩子，你值得好的生活。",
     "weAreGods": "我们都是神的孩子，你值得好的生活。"
   },
   "privacy": {
