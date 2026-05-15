@@ -130,20 +130,20 @@ const questions = [
   {
     id: 6,
     question: {
-      en: 'Poseidon posts in the group: "Who wants to go with me to open a supermarket underwater?". What would you do?',
-      zh: '波塞冬在群里发："谁愿意和我一起去海底开超市？". 你会做什么？'
+      en: 'Poseidon posts in the group: "Who wants to go with me to open a seaside guesthouse?". What would you do?',
+      zh: '波塞冬在群里发："谁愿意和我一起去海边开民宿？". 你会做什么？'
     },
     options: [
       {
-        text: { en: '"Can I plant wheat at the bottom?"', zh: '"我能种点海底麦子吗？"' },
+        text: { en: '"Can I plant a small vegetable garden in the courtyard?"', zh: '"我能在院子里种点小菜吗？"' },
         scores: { demeter: 3, persephone: 3 }
       },
       {
-        text: { en: '"I want to build an underwater cabin, then go fishing 🏹"', zh: '"我要造个海底小木屋，然后去打鱼🏹"' },
+        text: { en: '"I want to build a seaside cabin, then go fishing 🏹"', zh: '"我要造个海边小木屋，然后去打鱼🏹"' },
         scores: { hephaestus: 3, artemis: 3 }
       },
       {
-        text: { en: '"Underwater party? I\'m in! 🍷☀️"', zh: '"海底派对？我在！🍷☀️"' },
+        text: { en: '"Seaside guesthouse? I\'m in! 🍷☀️"', zh: '"海边民宿？我在！🍷☀️"' },
         scores: { apollo: 3, dionysus: 3 }
       },
       {
