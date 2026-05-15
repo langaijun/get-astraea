@@ -45,7 +45,9 @@
     "reportTitle": "Your Oracle Report",
     "yourTraits": "Your Core Traits",
     "mythMapping": "Mythological Mapping",
-    "lifeAdvice": "Life Advice"
+    "lifeAdvice": "Life Advice",
+    "inputPlaceholder": "What would you like guidance on? (Optional)",
+    "inputHint": "Share any confusion, questions, or areas of life you would like the oracle to address..."
   },
   "footer": {
     "disclaimer": "For entertainment reference only. | We are all children of gods, you deserve a good life.",

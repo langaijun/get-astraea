@@ -114,12 +114,14 @@ function renderResult() {
   document.getElementById('errorState').classList.add('hidden');
   document.getElementById('resultCard').classList.remove('hidden');
 
-  // Update god avatar
-  const avatarEl = document.getElementById('godAvatar');
-  avatarEl.textContent = GOD_EMOJIS[resultGod.id] || '🏛️';
-  avatarEl.style.background = resultGod.color.includes('gradient')
-    ? resultGod.color
-    : `${resultGod.color}30`;
+  // Update god avatar (emoji circle lives inside #godAvatar next to share button)
+  const avatarIconEl = document.getElementById('godAvatarIcon');
+  if (avatarIconEl) {
+    avatarIconEl.textContent = GOD_EMOJIS[resultGod.id] || '🏛️';
+    avatarIconEl.style.background = resultGod.color.includes('gradient')
+      ? resultGod.color
+      : `${resultGod.color}30`;
+  }
 
   // Update god name
   document.getElementById('godName').textContent =
@@ -171,10 +173,10 @@ function renderFreeReading() {
       <span class="text-4xl">${emoji}</span>
     </div>
     <div class="text-center mb-6">
-      <h4 class="font-title text-2xl md:text-3xl font-bold text-amber-900 mb-2">
+      <h4>
         ${data.title}
       </h4>
-      <p class="text-amber-600 font-medium mb-4">${data.subtitle}</p>
+      <p>${data.subtitle}</p>
     </div>
   `;
 
@@ -203,7 +205,7 @@ function renderFreeReading() {
         ${t('result.mythMapping') || 'Mythological Mapping'}
       </h5>
       <p class="text-gray-600 leading-relaxed text-sm">
-        ${data.mythology.replace(/\n/g, '<br>')}
+        ${data.mythology.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
       </p>
     </div>
   `;

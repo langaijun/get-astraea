@@ -45,7 +45,9 @@
     "reportTitle": "你的神谕报告",
     "yourTraits": "你的核心特质",
     "mythMapping": "神话映射",
-    "lifeAdvice": "生活建议"
+    "lifeAdvice": "生活建议",
+    "inputPlaceholder": "你希望获得哪方面的指引？（可选）",
+    "inputHint": "可填写你的困惑、疑问，或希望神谕回应的生活面向……"
   },
   "footer": {
     "disclaimer": "仅供娱乐参考 | 我们都是神的孩子，你值得好的生活。",
