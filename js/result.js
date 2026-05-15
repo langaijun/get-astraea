@@ -20,6 +20,17 @@ const GOD_EMOJIS = {
 
 // Static import for free interpretations
 import { freeInterpretations } from './god-templates.js';
+import { generateShareCard } from './share.js';
+
+const {
+  initI18n,
+  loadTranslations,
+  t,
+  setLanguage,
+  updatePageTranslations,
+  toggleLanguage,
+  getCurrentLang
+} = window.oracleI18n;
 
 document.addEventListener('DOMContentLoaded', async () => {
   await initResultPage();
@@ -412,7 +423,7 @@ function showError() {
 function handleShare() {
   if (!resultGod) return;
 
-  const lang = currentLang;
+  const lang = getCurrentLang();
   const shareData = {
     godId: resultGod.id,
     lang: lang

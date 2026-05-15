@@ -38,3 +38,5 @@ async function shareResult(data) {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { generateShareCard, shareResult };
 }
+
+export { generateShareCard, shareResult };

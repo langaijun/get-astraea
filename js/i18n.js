@@ -108,7 +108,20 @@ function getCurrentLang() {
   return currentLang;
 }
 
-// Export functions
+// Export functions (CommonJS for Node/tests)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { initI18n, loadTranslations, t, setLanguage, updatePageTranslations, toggleLanguage, getCurrentLang };
+}
+
+// Expose for ES modules (e.g. result.js) — `type="module"` scripts do not share global `function` bindings
+if (typeof window !== 'undefined') {
+  window.oracleI18n = {
+    initI18n,
+    loadTranslations,
+    t,
+    setLanguage,
+    updatePageTranslations,
+    toggleLanguage,
+    getCurrentLang
+  };
 }

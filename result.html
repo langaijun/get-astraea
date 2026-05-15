@@ -239,11 +239,8 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script type="module" src="js/gods-data.js"></script>
-  <script type="module" src="js/i18n.js"></script>
-  <script type="module" src="js/share.js"></script>
-  <script type="module" src="js/god-templates.js"></script>
+  <!-- i18n must be a classic script so APIs are on window.oracleI18n for result.js (ES module) -->
+  <script src="js/i18n.js"></script>
   <script type="module" src="js/result.js"></script>
 </body>
 </html>
