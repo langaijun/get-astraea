@@ -2,6 +2,9 @@
 
 let resultGod = null;
 
+// Import free interpretations
+const { freeInterpretations } = await import('./god-templates.js').then(m => m.freeInterpretations);
+
 document.addEventListener('DOMContentLoaded', async () => {
   await initResultPage();
 });
@@ -103,6 +106,94 @@ function renderResult() {
   // Update quote
   document.getElementById('godQuote').textContent =
     resultGod.quotes[lang] || resultGod.quotes.en;
+
+  // Render free reading
+  renderFreeReading();
+}
+
+function renderFreeReading() {
+  if (!resultGod || !freeInterpretations) return;
+
+  const lang = getCurrentLang();
+  const godId = resultGod.id;
+  const reading = freeInterpretations[godId];
+
+  if (!reading) return;
+
+  const contentDiv = document.getElementById('freeReadingContent');
+
+  // Get emoji for title
+  const emojiMap = {
+    athena: '🦉',
+    apollo: '☀️',
+    artemis: '🏹',
+    hestia: '🏠',
+    demeter: '🌾',
+    hephaestus: '⚒️',
+    hermes: '🪶',
+    aphrodite: '🌹',
+    dionysus: '🍇',
+    persephone: '🌸',
+    hebe: '🌸',
+    iris: '🌈'
+  };
+  const emoji = emojiMap[godId] || '🏛️';
+
+  const data = reading[lang];
+  const titleHtml = `
+    <div class="text-center mb-4">
+      <span class="text-4xl">${emoji}</span>
+    </div>
+    <div class="text-center mb-6">
+      <h4 class="font-title text-2xl md:text-3xl font-bold text-amber-900 mb-2">
+        ${data.title}
+      </h4>
+      <p class="text-amber-600 font-medium mb-4">${data.subtitle}</p>
+    </div>
+  `;
+
+  const descHtml = `
+    <div class="bg-amber-50 rounded-xl p-6 mb-6">
+      <p class="text-gray-700 leading-relaxed">
+        ${data.description.replace(/\n/g, '<br>')}
+      </p>
+    </div>
+  `;
+
+  const traitsHtml = `
+    <div class="bg-white/80 rounded-xl p-6 mb-6">
+      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">
+        ${t('result.yourTraits') || 'Your Core Traits'}
+      </h5>
+      <ul class="text-gray-700 leading-relaxed space-y-2 ml-6">
+        ${data.traits.split('\n').map(t => `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`).join('')}
+      </ul>
+    </div>
+  `;
+
+  const mythHtml = `
+    <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl p-6 mb-6">
+      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">
+        ${t('result.mythMapping') || 'Mythological Mapping'}
+      </h5>
+      <p class="text-gray-600 leading-relaxed text-sm">
+        ${data.mythology.replace(/\n/g, '<br>')}
+      </p>
+    </div>
+  `;
+
+  const adviceHtml = `
+    <div class="bg-white rounded-xl p-6 border-2 border-amber-200">
+      <h5 class="font-title text-lg font-bold text-amber-900 mb-3">
+        ${t('result.lifeAdvice') || 'Life Advice'}
+      </h5>
+      <ul class="text-gray-700 leading-relaxed space-y-3">
+        ${data.advice.split('\n').map(a => `<li class="flex items-start"><span class="mr-2 text-amber-500">•</span><span>${a.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</span></li>`).join('')}
+      </ul>
+    </div>
+  `;
+
+  contentDiv.innerHTML = titleHtml + descHtml + traitsHtml + mythHtml + adviceHtml;
 }
 
 function setupPayPalButton() {
@@ -308,9 +399,8 @@ function handleShare() {
 
   const lang = currentLang;
   const shareData = {
-    godName: resultGod.name[lang] || resultGod.name.en,
-    quote: resultGod.quotes[lang] || resultGod.quotes.en,
-    emoji: GOD_EMOJIS[resultGod.id] || '🏛️'
+    godId: resultGod.id,
+    lang: lang
   };
 
   generateShareCard(shareData);

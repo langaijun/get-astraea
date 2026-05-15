@@ -2,5 +2,8 @@
   "name": "olympus-echo",
   "version": "1.0.0",
   "description": "Oracle's Whisper - A gentle personality test",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "canvas": "^3.2.3"
+  }
 }

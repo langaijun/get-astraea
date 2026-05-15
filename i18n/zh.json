@@ -42,6 +42,9 @@
     "loading": "神谕正在低语...",
     "generating": "解读低语中...",
     "reportTitle": "你的神谕报告",
+    "yourTraits": "你的核心特质",
+    "mythMapping": "神话映射",
+    "lifeAdvice": "生活建议"
     "reportSections": {
       "overview": "概述",
       "strengths": "你的优势",

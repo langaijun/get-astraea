@@ -18,7 +18,7 @@ const questions = [
         scores: { athena: 3, apollo: 3 }
       },
       {
-        text: { en: 'Send emoji sticker in group: "Whose pizza is best? My treat 🍕"', zh: '群发表情包："谁家披萨最好吃？我请大家🍕"' },
+        text: { en: 'Send emoji sticker in group: "Whose pizza is best? My treat"', zh: '群发表情包："谁家披萨最好吃？我请大家"' },
         scores: { hestia: 3, demeter: 3 }
       },
       {
@@ -39,7 +39,7 @@ const questions = [
         scores: { hebe: 3, aphrodite: 3 }
       },
       {
-        text: { en: 'Screenshot and share to group: "Today\'s gossip, hurry and eat melons 🍉"', zh: '截图发群聊："今日瓜田，速来吃瓜🍉"' },
+        text: { en: 'Screenshot and share to group: "Today\'s gossip, hurry and eat melons"', zh: '截图发群聊："今日瓜田，速来吃瓜"' },
         scores: { apollo: 3, hermes: 3 }
       },
       {
@@ -47,7 +47,7 @@ const questions = [
         scores: { hephaestus: 3 }
       },
       {
-        text: { en: '@everyone: "Come to my house, let\'s open a bottle and judge together 🍷"', zh: '@所有人："来我家吧，开瓶酒一起品鉴"' },
+        text: { en: '@everyone: "Come to my house, let\'s open a bottle and judge together"', zh: '@所有人："来我家吧，开瓶酒一起品鉴"' },
         scores: { hestia: 3, dionysus: 3 }
       }
     ]
@@ -64,7 +64,7 @@ const questions = [
         scores: { athena: 3, hermes: 3 }
       },
       {
-        text: { en: 'Send message: "Can it be \'Spring Slacking\'? Winter is too cold 🌸"', zh: '发消息："能不能改成\'春天摸鱼\'？冬天太冷了🌸"' },
+        text: { en: 'Send message: "Can it be \'Spring Slacking\'? Winter is too cold"', zh: '发消息："能不能改成\'春天摸鱼\'？冬天太冷了"' },
         scores: { demeter: 3, persephone: 3 }
       },
       {
@@ -72,7 +72,7 @@ const questions = [
         scores: { aphrodite: 3, hestia: 3 }
       },
       {
-        text: { en: '"Resistance? Did I miss a party? 🍷"', zh: '"摸鱼？我是不是错过了啥派对？🍷"' },
+        text: { en: '"Resistance? Did I miss a party?"', zh: '"摸鱼？我是不是错过了啥派对？"' },
         scores: { apollo: 3, dionysus: 3 }
       }
     ]
@@ -85,11 +85,11 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"Can we go when the flowers bloom by the sea? Spring is coming soon 🌸"', zh: '"能不能等海边花开的时候去？春天快到了🌸"' },
+        text: { en: '"Can we go when the flowers bloom by the sea? Spring is coming soon"', zh: '"能不能等海边花开的时候去？春天快到了"' },
         scores: { demeter: 3, persephone: 3 }
       },
       {
-        text: { en: 'Post on Moments: "Seaside overtime invites you, rainbow snacks included ☀️🌈"', zh: '发朋友圈："海边加班邀你，有彩虹零食☀️🌈"' },
+        text: { en: 'Post on Moments: "Seaside overtime invites you, rainbow snacks included"', zh: '发朋友圈："海边加班邀你，有彩虹零食"' },
         scores: { apollo: 3, iris: 3 }
       },
       {
@@ -110,7 +110,7 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"I\'ll bring soup and fruit over 🍲🍎"', zh: '"我带汤和水果过去🍲🍎"' },
+        text: { en: '"I\'ll bring soup and fruit over"', zh: '"我带汤和水果过去"' },
         scores: { hestia: 3, demeter: 3 }
       },
       {
@@ -122,7 +122,7 @@ const questions = [
         scores: { hephaestus: 3 }
       },
       {
-        text: { en: '🎉 I\'m in!', zh: '🎉我来！' },
+        text: { en: 'I\'m in!', zh: '我来！' },
         scores: { aphrodite: 3 }
       }
     ]
@@ -139,15 +139,15 @@ const questions = [
         scores: { demeter: 3, persephone: 3 }
       },
       {
-        text: { en: '"I want to build a seaside cabin, then go fishing 🏹"', zh: '"我要造个海边小木屋，然后去打鱼🏹"' },
+        text: { en: '"I want to build a seaside cabin, then go fishing"', zh: '"我要造个海边小木屋，然后去打鱼"' },
         scores: { hephaestus: 3, artemis: 3 }
       },
       {
-        text: { en: '"Seaside guesthouse? I\'m in! 🍷☀️"', zh: '"海边民宿？我在！🍷☀️"' },
+        text: { en: '"Seaside guesthouse? I\'m in!"', zh: '"海边民宿？我在！"' },
         scores: { apollo: 3, dionysus: 3 }
       },
       {
-        text: { en: '"I won\'t go, I\'ll cook soup and bring it over 🏠"', zh: '"我就不去了，给大家煮点汤送过去🏠"' },
+        text: { en: '"I won\'t go, I\'ll cook soup and bring it over"', zh: '"我就不去了，给大家煮点汤送过去"' },
         scores: { hestia: 3, hebe: 3 }
       }
     ]
@@ -160,11 +160,11 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"Can I use emoji stickers instead? 😊"', zh: '"能不能用表情包代替？😊"' },
+        text: { en: '"Can I use emoji stickers instead?"', zh: '"能不能用表情包代替？"' },
         scores: { aphrodite: 3, hebe: 3 }
       },
       {
-        text: { en: '"I made soup, everyone drink some soup first before writing 🍲"', zh: '"我煮了汤，大家先喝口汤再写🍲"' },
+        text: { en: '"I made soup, everyone drink some soup first before writing"', zh: '"我煮了汤，大家先喝口汤再写"' },
         scores: { demeter: 3, hestia: 3 }
       },
       {
@@ -172,7 +172,7 @@ const questions = [
         scores: { athena: 3, hermes: 3 }
       },
       {
-        text: { en: '"It\'s the weekend, want a drink first? 🍷"', zh: '"周末了要不要先喝一杯再说？🍷"' },
+        text: { en: '"It\'s the weekend, want a drink first?"', zh: '"周末了要不要先喝一杯再说？"' },
         scores: { dionysus: 3, persephone: 3 }
       }
     ]
@@ -197,7 +197,7 @@ const questions = [
         scores: { hephaestus: 3, hebe: 3 }
       },
       {
-        text: { en: '"I brought fruit, replenish energy after exercise 🍎🌈"', zh: '"我带了水果，运动后补充能量🍎🌈"' },
+        text: { en: '"I brought fruit, replenish energy after exercise"', zh: '"我带了水果，运动后补充能量"' },
         scores: { demeter: 3, iris: 3 }
       }
     ]
@@ -214,15 +214,15 @@ const questions = [
         scores: { athena: 3, hermes: 3 }
       },
       {
-        text: { en: '"How about have a beauty party at my house? 🍷🌹"', zh: '"来我家开个美貌派对吧！🍷🌹"' },
+        text: { en: '"How about have a beauty party at my house?"', zh: '"来我家开个美貌派对吧！"' },
         scores: { aphrodite: 3, dionysus: 3 }
       },
       {
-        text: { en: '"Can beauty add points? I\'m starting to grind ☀️"', zh: '"美貌能加分吗？我要开始卷了☀️"' },
+        text: { en: '"Can beauty add points? I\'m starting to grind"', zh: '"美貌能加分吗？我要开始卷了"' },
         scores: { apollo: 3, hebe: 3 }
       },
       {
-        text: { en: '"Come to my house, I\'ll make soup to boost your energy 🌸"', zh: '"来我家吧，煮汤给你补补元气🌸"' },
+        text: { en: '"Come to my house, I\'ll make soup to boost your energy"', zh: '"来我家吧，煮汤给你补补元气"' },
         scores: { hestia: 3, persephone: 3 }
       }
     ]
@@ -235,11 +235,11 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"I\'ll be the atmosphere team captain! 🌈"', zh: '"我来当团建气氛组组长！🌈"' },
+        text: { en: '"I\'ll be the atmosphere team captain!"', zh: '"我来当团建气氛组组长！"' },
         scores: { iris: 3, hermes: 3 }
       },
       {
-        text: { en: '"I\'ll bring snacks and soup for team building 🍲"', zh: '"团建时我负责带零食和汤🍲"' },
+        text: { en: '"I\'ll bring snacks and soup for team building"', zh: '"团建时我负责带零食和汤"' },
         scores: { demeter: 3, hestia: 3 }
       },
       {
@@ -256,11 +256,11 @@ const questions = [
     },
     options: [
       {
-        text: { en: '"Go to the forest park, see the spring flowers 🌸🏹"', zh: '"去森林公园，看看春天的花🌸🏹"' },
+        text: { en: '"Go to the forest park, see the spring flowers"', zh: '"去森林公园，看看春天的花"' },
         scores: { artemis: 3, persephone: 3 }
       },
       {
-        text: { en: '"Have a party at home, buy some wine 🍷🏠"', zh: '"在家开个派对吧，买点酒🍷🏠"' },
+        text: { en: '"Have a party at home, buy some wine"', zh: '"在家开个派对吧，买点酒"' },
         scores: { hestia: 3, dionysus: 3 }
       },
       {
@@ -277,7 +277,7 @@ const questions = [
     },
     options: [
       {
-        text: { en: 'Soup and rice, warm the stomach first 🏠', zh: '汤和米饭，先暖暖胃🏠' },
+        text: { en: 'Soup and rice, warm the stomach first', zh: '汤和米饭，先暖暖胃' },
         scores: { hestia: 3, hebe: 3 }
       },
       {
@@ -285,11 +285,11 @@ const questions = [
         scores: { athena: 3, hermes: 3 }
       },
       {
-        text: { en: 'Exquisite little pastries 🌹', zh: '精致的小点心🌹' },
+        text: { en: 'Exquisite little pastries', zh: '精致的小点心' },
         scores: { hephaestus: 3, aphrodite: 3 }
       },
       {
-        text: { en: 'Vegetables and fruits I grew myself 🥗🌸', zh: '自己种的蔬菜和水果🥗🌸' },
+        text: { en: 'Vegetables and fruits I grew myself', zh: '自己种的蔬菜和水果' },
         scores: { artemis: 3, demeter: 3 }
       }
     ]

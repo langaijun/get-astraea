@@ -37,11 +37,14 @@
     "quote": "Your Golden Message",
     "shareTitle": "Share Your Oracle",
     "unlockFull": "Unlock Your Full Oracle Reading",
-    "unlockDesc": "Get a personalized 1000-word oracle report with guidance, insights, and practices tailored to your unique spiritual path.",
+    "unlockDesc": "Get a personalized 1000 word oracle report with guidance, insights, and practices tailored to your unique spiritual path.",
     "getReport": "Get Full Report - $2.99",
     "loading": "The oracle is speaking...",
     "generating": "Interpreting the whispers...",
     "reportTitle": "Your Oracle Report",
+    "yourTraits": "Your Core Traits",
+    "mythMapping": "Mythological Mapping",
+    "lifeAdvice": "Life Advice"
     "reportSections": {
       "overview": "Overview",
       "strengths": "Your Strengths",
