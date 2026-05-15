@@ -2,8 +2,8 @@
 
 let resultGod = null;
 
-// Import free interpretations
-const { freeInterpretations } = await import('./god-templates.js').then(m => m.freeInterpretations);
+// Static import for free interpretations
+import { freeInterpretations } from './god-templates.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   await initResultPage();
