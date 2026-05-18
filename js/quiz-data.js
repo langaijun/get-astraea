@@ -203,25 +203,25 @@ const questions = [
   {
     id: 9,
     question: {
-      en: 'Hera posts on Moments: "Another day troubled by beauty". What would you do?',
-      zh: '赫拉发朋友圈："今天又是被美貌烦恼的一天". 你会做什么？'
+      en: 'Your friend posts in the group: "Recently so much stress, don\'t know what to do". What would you do?',
+      zh: '朋友在群里说："最近压力好大，不知道该怎么办". 你会做什么？'
     },
     options: [
       {
-        text: { en: '@everyone "Who has beauty filter recommendations?"', zh: '@所有人 "谁有美颜滤镜推荐？"' },
+        text: { en: 'DM to analyze: "Is it work or life stress? Let\'s list them and find solutions"', zh: '私信分析："具体是工作压力还是生活压力？列出来我们一起看看怎么解决"' },
         scores: { athena: 3, hermes: 3 }
       },
       {
-        text: { en: '"How about have a beauty party at my house?"', zh: '"来我家开个美貌派对吧！"' },
-        scores: { apollo: 3, hebe: 3 }
+        text: { en: 'DM to invite: "Come to my house this weekend, I\'ll make soup, we can chat slowly"', zh: '私信约饭："这周末来我家吧，我煮点汤，慢慢聊"' },
+        scores: { hestia: 3, demeter: 3 }
       },
       {
-        text: { en: '"Can beauty add points? I\'m starting to grind"', zh: '"美貌能加分吗？我要开始卷了"' },
-        scores: { apollo: 3, hebe: 3 }
+        text: { en: 'Send emoji sticker + "Keep going worker", then share useful stress-relief apps or workout plan', zh: '发个表情包+"打工人加油"，然后私发推荐好用的解压APP或运动计划' },
+        scores: { hephaestus: 3, apollo: 3 }
       },
       {
-        text: { en: '"Come to my house, I\'ll make soup to boost your energy"', zh: '"来我家吧，煮汤给你补补元气"' },
-        scores: { hestia: 3, persephone: 3 }
+        text: { en: '@everyone: "Who\'s free? Let\'s have a \'Forget the Stress\' party!"', zh: '@所有人："谁有空？我们来个\'忘掉烦恼\'派对吧！"' },
+        scores: { dionysus: 3, iris: 3 }
       }
     ]
   },
