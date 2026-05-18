@@ -55,6 +55,25 @@
 5. **Quiz 数据语法** - 已修复选项格式 (9bd7d62)
 6. **重复变量声明** - 已修复 currentLang (769f4d2)
 
+## 结果页迭代记录（2026-05-15）
+
+以下为当日已合并至 `main` 的主要改动与对应提交（便于回溯）。
+
+| 提交 | 说明 |
+|------|------|
+| `91f83f5` | 修复 `result.js` 模块作用域下 `initI18n` 未定义导致结果页卡死；`i18n.js` 暴露 `window.oracleI18n`，`share.js` ESM 导出，`result.html` 脚本顺序调整 |
+| `9fc5e8e` | 结果页布局与文案：支付区 `inputPlaceholder`/`inputHint` 中英 i18n、静态中文默认、免费解读样式微调、`handleShare` 使用 `getCurrentLang()` |
+| `e77cced` | 分享改为头像旁小圆钮；去掉标题区 ✨、若干小节标题与免费解读内重复标题块；头像区拆出 `#godAvatarIcon` |
+| `ee5ffcb` | 免费解读顺序：神话 → 描述 → 特质 → 建议 |
+| `e063af8` | 去掉神话字段「神话映射：」前缀、中文 `——`→`：`、列表行去掉 Markdown `-`、跳过孤立的 `**小节**：` 行；神话段 `text-base`（16px） |
+| `03ceddf` | 神话卡片背景由琥珀渐变改为纯白，减少同页背景色种类 |
+| `bd5414d` | 恢复「你的核心特质」「生活建议」小节 `h5` 标题 |
+| `175a6dc` | 分享按钮固定于 `god-card` 右上角（`relative` + `absolute`），头像区仅保留居中圆形 |
+
+**涉及文件（多次提交累计）**：`result.html`、`js/result.js`、`js/i18n.js`、`js/share.js`、`i18n/en.json`、`i18n/zh.json`
+
+---
+
 ## 待明天处理
 
 - [ ] 检查 premium.html 部署状态

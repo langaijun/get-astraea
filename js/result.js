@@ -262,7 +262,7 @@ function setupPayPalButton() {
     const returnUrl = encodeURIComponent(baseUrl + '?status=paid');
 
     // Redirect to PayPal with return URL
-    const paypalUrl = `https://www.paypal.com/ncp/payment/FBNUG29QG9SVE?return_url=${returnUrl}`;
+    const paypalUrl = `https://www.paypal.com/ncp/payment/M2WU2T7YLWDXY?return_url=${returnUrl}`;
     window.open(paypalUrl, '_blank');
   });
 }
