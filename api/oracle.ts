@@ -253,17 +253,14 @@ Create a warm, encouraging, and insightful oracle report of approximately 1000 w
 ## Structure
 Please format your response with the following sections using "##" headers:
 
-## Your Oracle Identity
-Introduce ${godName}'s energy and how it manifests in their life. Explain what it means to have this deity as their oracle.
-
 ## The Wisdom Within
 Highlight their inherent strengths and qualities that ${godName} embodies. Help them see the beauty in their nature.
 
 ## Navigating Current Tides
-Offer guidance relevant to their current state. ${userInput ? 'Address their specific concern with wisdom and perspective.' : 'Help them find clarity and direction.'}
+Offer guidance relevant to their current state. Address their specific concern with wisdom and perspective.
 
 ## Sacred Practices for Daily Life
-Suggest 3-4 simple, practical practices to connect with ${godName}'s energy in their daily life. These should be accessible and meaningful.
+Suggest 3-4 simple, practical practices to connect with ${godName}'s energy in their daily life.
 
 ## A Closing Blessing
 End with a brief, beautiful blessing or affirmation they can carry with them.
@@ -289,20 +286,17 @@ ${userInput ? `- 他们分享了这样的困惑/问题："${userInput}"` : ''}
 ## 结构
 请使用 "##" 标题按以下部分格式化你的回复：
 
-## 你的神谕身份
-介绍 ${godNameZh} 的能量以及它如何在他们生活中显现。解释拥有这位神祇作为他们的神谕意味着什么。
-
 ## 内在的智慧
 突出 ${godNameZh} 所体现的他们固有优势和品质。帮助他们看到自己本性中的美。
 
 ## 穿越当下的潮汐
-提供与他们当前状态相关的指导。${userInput ? '用智慧和视角回应他们的具体关切。' : '帮助他们找到清晰和方向。'}
+提供与他们当前状态相关的指导。用智慧和视角回应他们的具体关切。
 
 ## 日常生活的神圣实践
-建议 3-4 种简单、实用的实践方法，在日常生活中连接 ${godNameZh} 的能量。这些应该是易于理解和有意义的。
+建议 3-4 种简单、实用的实践方法，在日常生活中连接 ${godNameZh} 的能量。
 
 ## 结尾祝福
-以一个简短、美好的祝福或肯定结束，让他们可以随身携带。
+以一个简短、美好的祝福或肯定结束。
 
 记住：我们都是神的孩子。他们值得好的生活。你的话语应该帮助他们感到被看见、被理解和值得。`;
 }
