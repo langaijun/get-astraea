@@ -16,33 +16,219 @@ interface OracleRequest {
 
 interface OracleResponse {
   report: string;
+  isFallback?: boolean;
   error?: string;
 }
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
-// Fallback reports when AI fails
-const FALLBACK_REPORTS = {
-  en: {
-    identity: `## Your Oracle Identity\n\nYou have a deep connection to the divine. The oracle has taken a sip of water and offers you this truth.`,
-    wisdom: `## The Wisdom Within\n\nYour heart knows the way forward. Trust your intuition, for it is the voice of the gods speaking through you.`,
-    tides: `## Navigating Current Tides\n\nThe water settles when we let go. Breathe deeply, and the path will reveal itself.`,
-    practices: `## Sacred Practices for Daily Life\n\n- Take three deep breaths before making decisions\n- Spend five minutes in silence each morning\n- Trust your first instinct`,
-    blessing: `## A Closing Blessing\n\nMay you walk in wisdom and peace. The gods walk with you, always.`
+// Personalized fallback reports for each god
+const GOD_FALLBACK_REPORTS = {
+  athena: {
+    en: {
+      identity: `## Your Oracle Identity\n\nYou are connected to Athena's wisdom. She took a sip of water from her well of knowledge and shares this with you.`,
+      wisdom: `## The Wisdom Within\n\nYour mind is sharp like Athena's spear. You see patterns others miss. Trust your analytical ability—it is a gift, not a burden.`,
+      tides: `## Navigating Current Tides\n\nBefore acting, ask: "What matters most?" Strategy comes from clarity. Pause, reflect, then move with purpose.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Before decisions, list three options and their outcomes\n- Keep a "wisdom journal" to track what works\n- Share knowledge freely—it returns`,
+      blessing: `## A Closing Blessing\n\nMay your mind be clear, your path be just, and your wisdom light the way for others.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n你与雅典娜的智慧相连。她从知识之井中喝了口水，与你分享这份领悟。`,
+      wisdom: `## 内在的智慧\n\n你的头脑像雅典娜的长矛一样敏锐。你能看到别人看不到的模式。相信你的分析能力——这是天赋，不是负担。`,
+      tides: `## 穿越当下的潮汐\n\n行动之前，问自己："什么最重要？" 策略来自清晰。停顿，反思，然后有目的地行动。`,
+      practices: `## 日常生活的神圣实践\n\n- 做决定前列出三个选项及其结果\n- 记录"智慧日记"，追踪什么有效\n- 自由分享知识——它会回来`,
+      blessing: `## 结尾祝福\n\n愿你的头脑清晰，道路公正，智慧照亮他人的前行之路。`
+    }
   },
-  zh: {
-    identity: `## 你的神谕身份\n\n你与神祇有着深深的连接。神祇喝了杯水，然后告诉你这个真相。`,
-    wisdom: `## 内在的智慧\n\n你的心知道前进的方向。相信你的直觉，因为它是神祇通过你发出的声音。`,
-    tides: `## 穿越当下的潮汐\n\n当我们放下时，水会平静下来。深呼吸，道路自然会显现。`,
-    practices: `## 日常生活的神圣实践\n\n- 做决定前深呼吸三次\n- 每天早上花五分钟静默\n- 相信你的第一直觉`,
-    blessing: `## 结尾祝福\n\n愿你带着智慧和和平前行。神祇永远与你同在。`
+  apollo: {
+    en: {
+      identity: `## Your Oracle Identity\n\nApollo's light shines through you. He set down his lyre to drink, and this message is for you.`,
+      wisdom: `## The Wisdom Within\n\nYou carry warmth and light. Your presence heals others without you knowing. Art and beauty flow naturally from your soul.`,
+      tides: `## Navigating Current Tides\n\nThe sun rises every day—so will clarity. Trust the rhythm of your days. Create something, anything. Creation heals.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Sing or hum when you feel lost\n- Spend time in sunlight, real or imagined\n- Create one beautiful thing each day`,
+      blessing: `## A Closing Blessing\n\nMay your light be warm, your art be true, and your days be filled with music.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n阿波罗的光芒透过你闪耀。他放下竖琴喝了水，这条信息是给你的。`,
+      wisdom: `## 内在的智慧\n\n你携带着温暖和光芒。你的存在不知不觉地治愈他人。艺术和美自然地从你灵魂中流淌。`,
+      tides: `## 穿越当下的潮汐\n\n太阳每天都会升起——清晰也会到来。相信你生活的节奏。创造点什么，什么都好。创造治愈。`,
+      practices: `## 日常生活的神圣实践\n\n- 迷路时唱歌或哼唱\n- 花时间在阳光下，真实的或想象的都可以\n- 每天创造一件美好的事物`,
+      blessing: `## 结尾祝福\n\n愿你的光芒温暖，你的艺术真实，你的日子充满音乐。`
+    }
+  },
+  artemis: {
+    en: {
+      identity: `## Your Oracle Identity\n\nThe forest guardian walks with you. Artemis paused at a spring to drink, and the water whispered this truth.`,
+      wisdom: `## The Wisdom Within\n\nYour independence is strength, not isolation. You protect what matters—wild places, honest hearts, pure intentions. Trust your wild instincts.`,
+      tides: `## Navigating Current Tides\n\nGo outside. Nature speaks your language. The moon waxes and wanes, but always returns. So will you.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Walk barefoot on grass or earth\n- Honor your need for solitude\n- Protect something small—a plant, a dream, a moment`,
+      blessing: `## A Closing Blessing\n\nMay you be wild and free, protected by the forest, guided by the moon.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n森林守护者与你同行。阿尔忒弥斯在泉边停下喝了水，水低语着这个真相。`,
+      wisdom: `## 内在的智慧\n\n你的独立是力量，不是孤立。你保护重要的东西——野性的地方、诚实的心、纯粹的意图。相信你的野性本能。`,
+      tides: `## 穿越当下的潮汐\n\n去户外。大自然说你的语言。月亮会阴晴圆缺，但总会回来。你也会。`,
+      practices: `## 日常生活的神圣实践\n\n- 赤脚走在草地或土地上\n- 尊重你对独处的需求\n- 保护一个小东西——一株植物、一个梦想、一个时刻`,
+      blessing: `## 结尾祝福\n\n愿你野性自由，受森林保护，受月亮指引。`
+    }
+  },
+  hestia: {
+    en: {
+      identity: `## Your Oracle Identity\n\nHestia keeps the hearth fire burning for you. She poured water over the embers, and this warmth is for you.`,
+      wisdom: `## The Wisdom Within\n\nYou create comfort. Your quiet presence is a gift. Home is not a place—it's where others feel safe around you.`,
+      tides: `## Navigating Current Tides\n\nReturn to center. Breathe. Make tea. Small rituals ground us when life feels chaotic.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Light a candle when you need clarity\n- Cook something with intention\n- Notice the warmth in small moments`,
+      blessing: `## A Closing Blessing\n\nMay your hearth never go cold, your home always welcome, and your heart find peace.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n赫斯提亚为你保持炉火燃烧。她把水倒在灰烬上，这份温暖是给你的。`,
+      wisdom: `## 内在的智慧\n\n你创造舒适。你安静的存在是礼物。家不是一个地方——它是别人在你身边感到安全的地方。`,
+      tides: `## 穿越当下的潮汐\n\n回到中心。呼吸。煮茶。当生活感觉混乱时，小小的仪式让我们脚踏实地。`,
+      practices: `## 日常生活的神圣实践\n\n- 需要清晰时点一根蜡烛\n- 有意地煮点东西\n- 注意小片刻中的温暖`,
+      blessing: `## 结尾祝福\n\n愿你的炉火永不熄灭，你的家永远欢迎，你的心找到平静。`
+    }
+  },
+  demeter: {
+    en: {
+      identity: `## Your Oracle Identity\n\nThe mother of harvest nourishes you. Demeter blessed the water with grain, and this abundance is your birthright.`,
+      wisdom: `## The Wisdom Within\n\nYou feed others—emotionally, spiritually, sometimes literally. Your nurturing is not weakness. It is power.`,
+      tides: `## Navigating Current Tides\n\nWinter comes, but spring follows. Patience is not passive. Seeds grow underground before they sprout.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Grow something, even a small pot plant\n- Cook with love and intention\n- Share meals with others`,
+      blessing: `## A Closing Blessing\n\nMay your harvest be abundant, your seasons be balanced, and your nourishment be shared.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n丰收之母滋养着你。德墨忒耳用谷物祝福了水，这份丰盛是你的与生俱来的权利。`,
+      wisdom: `## 内在的智慧\n\n你滋养他人——情感上、精神上，有时字面意义上。你的养育不是软弱，是力量。`,
+      tides: `## 穿越当下的潮汐\n\n冬天会来，但春天会跟随。耐心不是被动。种子发芽前在地下生长。`,
+      practices: `## 日常生活的神圣实践\n\n- 种点什么，即使是一盆小植物\n- 用爱和意图做饭\n- 与他人分享食物`,
+      blessing: `## 结尾祝福\n\n愿你的收获丰盛，你的季节平衡，你的滋养被分享。`
+    }
+  },
+  hephaestus: {
+    en: {
+      identity: `## Your Oracle Identity\n\nThe smith god shapes you. Hephaestus quenched his hammer in water, and this message is forged for you.`,
+      wisdom: `## The Wisdom Within\n\nYou create with your hands and mind. What others call broken, you see as potential. You are an artist of repair.`,
+      tides: `## Navigating Current Tides\n\nWhen stuck, make something. Build. Create. The act of making reveals the path forward.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Fix something broken\n- Create with your hands regularly\n- See beauty in utility and function`,
+      blessing: `## A Closing Blessing\n\nMay your creations be meaningful, your repairs be lasting, and your hands find their work.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n锻造之神塑造着你。赫菲斯托斯把锤子浸入水中，这条信息为你锻造。`,
+      wisdom: `## 内在的智慧\n\n你用手和思想创造。别人眼中破碎的东西，你看到潜力。你是修理艺术家。`,
+      tides: `## 穿越当下的潮汐\n\n卡住时，做点什么。建造。创造。创造的行为揭示前进的道路。`,
+      practices: `## 日常生活的神圣实践\n\n- 修理坏掉的东西\n- 经常用手创作\n- 在实用和功能中发现美`,
+      blessing: `## 结尾祝福\n\n愿你的创造有意义，你的修理持久，你的手找到它们的工作。`
+    }
+  },
+  hermes: {
+    en: {
+      identity: `## Your Oracle Identity\n\nThe messenger god speaks through you. Hermes sipped from a stream and said: "Carry this forward."`,
+      wisdom: `## The Wisdom Within\n\nYou connect people, ideas, places. You are the bridge. Your adaptability is not flakiness—it is flexibility.`,
+      tides: `## Navigating Current Tides\n\nStay curious. Ask questions. Follow the interesting thread. The messenger finds the way.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Learn something new regularly\n- Connect two people who should meet\n- Travel, even if it's just a new route`,
+      blessing: `## A Closing Blessing\n\nMay your messages be clear, your journeys be safe, and your connections be meaningful.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n信使之神通过你说话。赫尔墨斯从小溪中啜饮并说："把这个带下去。"`,
+      wisdom: `## 内在的智慧\n\n你连接人、想法、地方。你是桥梁。你的适应能力不是善变——是灵活性。`,
+      tides: `## 穿越当下的潮汐\n\n保持好奇。问问题。追随有趣的线索。信使找到路。`,
+      practices: `## 日常生活的神圣实践\n\n- 经常学习新东西\n- 连接两个应该见面的人\n- 旅行，即使只是走一条新路`,
+      blessing: `## 结尾祝福\n\n愿你的信息清晰，旅程安全，连接有意义。`
+    }
+  },
+  aphrodite: {
+    en: {
+      identity: `## Your Oracle Identity\n\nLove and beauty are your domain. Aphrodite bathed in rose water and left this reflection for you.`,
+      wisdom: `## The Wisdom Within\n\nYou see beauty others miss. Love is not romance—it is the force that connects everything. You are its conduit.`,
+      tides: `## Navigating Current Tides\n\nPractice self-love first. When you are full, others drink without you being drained. Beauty is presence, not performance.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Surround yourself with beauty\n- Speak kindly to yourself\n- Create moments of intimacy with friends`,
+      blessing: `## A Closing Blessing\n\nMay you be deeply loved, truly seen, and surrounded by beauty.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n爱与美是你的领域。阿芙洛狄忒用玫瑰水沐浴，留下了这个倒影给你。`,
+      wisdom: `## 内在的智慧\n\n你看到别人错过的美。爱不是浪漫——它是连接一切的力量。你是它的管道。`,
+      tides: `## 穿越当下的潮汐\n\n首先练习自爱。当你充满时，他人饮用不会让你枯竭。美是存在，不是表演。`,
+      practices: `## 日常生活的神圣实践\n\n- 用美包围自己\n- 对自己说话要友善\n- 与朋友创造亲密时刻`,
+      blessing: `## 结尾祝福\n\n愿你被深爱，被真正看见，被美包围。`
+    }
+  },
+  dionysus: {
+    en: {
+      identity: `## Your Oracle Identity\n\nJoy and liberation flow through you. Dionysus poured wine into water and declared: "Celebrate being alive."`,
+      wisdom: `## The Wisdom Within\n\nYou belong here. Your presence brings joy. Release is not escape—it is letting go of what no longer serves you.`,
+      tides: `## Navigating Current Tides\n\nDance, sing, laugh. Pleasure is not sin—it is medicine. Find community. You are not alone.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Do something just for fun\n- Gather with friends regularly\n- Celebrate small wins`,
+      blessing: `## A Closing Blessing\n\nMay your joy be deep, your release be liberating, and your belonging be unshakable.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n欢乐和解放流过你。狄俄尼索斯把酒倒进水中宣称："庆祝活着。"`,
+      wisdom: `## 内在的智慧\n\n你属于这里。你的存在带来快乐。释放不是逃避——是放下不再为你服务的东西。`,
+      tides: `## 穿越当下的潮汐\n\n跳舞，唱歌，笑。快乐不是罪——是药。找到群体。你并不孤单。`,
+      practices: `## 日常生活的神圣实践\n\n- 做点只为好玩的事\n- 定期与朋友聚会\n- 庆祝小胜利`,
+      blessing: `## 结尾祝福\n\n愿你的快乐深沉，释放解放，归属不可动摇。`
+    }
+  },
+  persephone: {
+    en: {
+      identity: `## Your Oracle Identity\n\nYou understand cycles of death and rebirth. Persephone drank from the underworld spring and whispered this about renewal.`,
+      wisdom: `## The Wisdom Within\n\nYou have been to the dark and returned. That makes you wise, not broken. Your hope is real because it survived despair.`,
+      tides: `## Navigating Current Tides\n\nThe seasons change, and so will this. Trust the cycle. What is ending makes space for what is beginning.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Honor endings as beginnings\n- Spend time with growing things\n- Remember that winter always leads to spring`,
+      blessing: `## A Closing Blessing\n\nMay your springs be hopeful, your cycles be blessed, and your journey be transformative.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n你理解死亡与重生的循环。珀耳塞福涅从冥界之泉中喝水，低语着关于更新的话语。`,
+      wisdom: `## 内在的智慧\n\n你曾到过黑暗并返回。这让你智慧，不是破碎。你的希望是真实的，因为它在绝望中幸存。`,
+      tides: `## 穿越当下的潮汐\n\n季节会改变，这也会。相信循环。结束为开始腾出空间。`,
+      practices: `## 日常生活的神圣实践\n\n- 把结束当作开始来尊重\n- 花时间与生长的事物相处\n- 记住冬天总会引向春天`,
+      blessing: `## 结尾祝福\n\n愿你的春天充满希望，循环被祝福，旅程具有转变力量。`
+    }
+  },
+  hebe: {
+    en: {
+      identity: `## Your Oracle Identity\n\nYouth and vitality are yours. Hebe filled a golden cup with water and offered: "Stay fresh, stay kind."`,
+      wisdom: `## The Wisdom Within\n\nYour energy is a gift. Service to others is not subservience—it is how you shine. You lift the room.`,
+      tides: `## Navigating Current Tides\n\nStay light-hearted. Serious problems need light solutions. You are the breath of fresh air others need.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Help someone spontaneously\n- Keep your inner child alive\n- Approach life with playfulness`,
+      blessing: `## A Closing Blessing\n\nMay your youth be eternal, your service be joyful, and your heart remain light.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n青春和活力属于你。赫柏用金杯装满水并说："保持新鲜，保持善良。"`,
+      wisdom: `## 内在的智慧\n\n你的能量是礼物。为他人服务不是顺从——是你发光的方式。你提升整个房间。`,
+      tides: `## 穿越当下的潮汐\n\n保持轻松的心态。严重的问题需要轻松的解决方案。你是别人需要的清新空气。`,
+      practices: `## 日常生活的神圣实践\n\n- 自发地帮助某人\n- 让内在的孩子保持活力\n- 用顽皮的方式对待生活`,
+      blessing: `## 结尾祝福\n\n愿你的青春永恒，服务快乐，心保持轻盈。`
+    }
+  },
+  iris: {
+    en: {
+      identity: `## Your Oracle Identity\n\nYou are the messenger of good news. Iris dipped in the waterfall and carried this rainbow message to you.`,
+      wisdom: `## The Wisdom Within\n\nYou connect the divided. You see bridges where others see gaps. Hope is what you carry.`,
+      tides: `## Navigating Current Tides\n\nLook for the rainbow after rain. Good news is coming. Share it when you find it.`,
+      practices: `## Sacred Practices for Daily Life\n\n- Share good news when you hear it\n- Look for beauty in transitions\n- Be the connector in your circles`,
+      blessing: `## A Closing Blessing\n\nMay your rainbows be bright, your connections be true, and your hope be contagious.`
+    },
+    zh: {
+      identity: `## 你的神谕身份\n\n你是好消息的信使。伊里斯浸入瀑布，把这条彩虹信息带给你。`,
+      wisdom: `## 内在的智慧\n\n你连接分裂的。你在别人看到差距的地方看到桥梁。你携带的是希望。`,
+      tides: `## 穿越当下的潮汐\n\n雨后寻找彩虹。好消息即将到来。找到它时分享它。`,
+      practices: `## 日常生活的神圣实践\n\n- 听到好消息时分享它\n- 在过渡中寻找美\n- 成为圈子中的连接者`,
+      blessing: `## 结尾祝福\n\n愿你的彩虹明亮，连接真实，希望具有传染性。`
+    }
   }
 };
 
-function generateFallbackReport(lang: 'en' | 'zh', godName: string): string {
-  const f = lang === 'en' ? FALLBACK_REPORTS.en : FALLBACK_REPORTS.zh;
-  // Personalize with god name
-  return f.identity.replace('the oracle', godName) +
+function generateFallbackReport(god: string, lang: 'en' | 'zh', godName: string, trait: string): string {
+  const reports = GOD_FALLBACK_REPORTS[god as keyof typeof GOD_FALLBACK_REPORTS];
+  if (!reports) {
+    // Default fallback if god not found
+    return lang === 'zh'
+      ? `## 你的神谕身份\n\n神祇喝了口水后想对你说的话。\n\n## 内在的智慧\n\n你有与神祇的连接。\n\n## 穿越当下的潮汐\n\n相信你内心的声音。\n\n## 日常生活的神圣实践\n\n- 每天静默片刻\n- 相信直觉\n- 对自己温柔\n\n## 结尾祝福\n\n神祇与你同在。`
+      : `## Your Oracle Identity\n\nThe oracle took a sip of water and offers this message.\n\n## The Wisdom Within\n\nYou have a connection to the divine.\n\n## Navigating Current Tides\n\nTrust your inner voice.\n\n## Sacred Practices for Daily Life\n\n- Spend time in silence daily\n- Trust your intuition\n- Be gentle with yourself\n\n## A Closing Blessing\n\nThe gods walk with you.`;
+  }
+
+  const f = reports[lang];
+  return f.identity +
          '\n\n' + f.wisdom +
          '\n\n' + f.tides +
          '\n\n' + f.practices +
@@ -193,10 +379,19 @@ export default async function handler(request: Request): Promise<Response> {
     if (!response.ok) {
       const errorData = await response.text();
       console.error('DeepSeek API error:', errorData, 'Status:', response.status);
-      // Return fallback report instead of error
-      const fallbackReport = generateFallbackReport(lang, lang === 'zh' ? godNameZh : godName);
+
+      // If user provided a question, cannot use fallback - return error
+      if (userInput && userInput.trim()) {
+        return new Response(
+          JSON.stringify({ error: 'oracle_busy' }), // Special error code for frontend
+          { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // No user input - use personalized fallback report
+      const fallbackReport = generateFallbackReport(god, lang, lang === 'zh' ? godNameZh : godName, trait);
       return new Response(
-        JSON.stringify({ report: fallbackReport }),
+        JSON.stringify({ report: fallbackReport, isFallback: true }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -205,15 +400,23 @@ export default async function handler(request: Request): Promise<Response> {
     const report = data.choices?.[0]?.message?.content || '';
 
     if (!report) {
-      // Return fallback report instead of error
-      const fallbackReport = generateFallbackReport(lang, lang === 'zh' ? godNameZh : godName);
+      // If user provided a question, cannot use fallback - return error
+      if (userInput && userInput.trim()) {
+        return new Response(
+          JSON.stringify({ error: 'oracle_busy' }),
+          { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // No user input - use personalized fallback report
+      const fallbackReport = generateFallbackReport(god, lang, lang === 'zh' ? godNameZh : godName, trait);
       return new Response(
-        JSON.stringify({ report: fallbackReport }),
+        JSON.stringify({ report: fallbackReport, isFallback: true }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const result: OracleResponse = { report };
+    const result: OracleResponse = { report, isFallback: false };
 
     return new Response(
       JSON.stringify(result),
@@ -228,10 +431,28 @@ export default async function handler(request: Request): Promise<Response> {
 
   } catch (error) {
     console.error('Oracle generation error:', error);
-    // Return fallback report instead of error
-    const fallbackReport = generateFallbackReport(lang, lang === 'zh' ? godNameZh : godName);
+
+    // If user provided a question, cannot use fallback - return error
+    const body = request.method === 'POST' ? await request.clone().json() : {};
+    const userInput = body.userInput;
+
+    if (userInput && userInput.trim()) {
+      return new Response(
+        JSON.stringify({ error: 'oracle_busy' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // No user input - use personalized fallback report
+    const lang = body.lang || 'en';
+    const god = body.god || '';
+    const godName = body.godName || '';
+    const godNameZh = body.godNameZh || '';
+    const trait = body.trait || '';
+
+    const fallbackReport = generateFallbackReport(god, lang, lang === 'zh' ? godNameZh : godName, trait);
     return new Response(
-      JSON.stringify({ report: fallbackReport }),
+      JSON.stringify({ report: fallbackReport, isFallback: true }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   }

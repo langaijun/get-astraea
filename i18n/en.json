@@ -6,7 +6,10 @@
     "loading": "Connecting to ancient wisdom...",
     "error": "Something went wrong",
     "retry": "Try Again",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "oracleBusy": "The oracle is adjusting breath",
+    "oracleBusySub": "Please try again in a moment",
+    "oracleBusyRetry": "Reconnect with Oracle"
   },
   "hero": {
     "title": "Oracle's Whisper",

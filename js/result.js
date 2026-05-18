@@ -290,6 +290,41 @@ function showReportError() {
   document.getElementById('reportError').classList.remove('hidden');
 }
 
+function showReportBusy() {
+  document.getElementById('reportLoading').classList.add('hidden');
+  document.getElementById('reportContent').classList.add('hidden');
+
+  // Create busy state message
+  const reportContainer = document.getElementById('reportSections').parentElement;
+
+  // Remove existing busy state if any
+  const existingBusy = document.getElementById('reportBusyState');
+  if (existingBusy) existingBusy.remove();
+
+  const busyDiv = document.createElement('div');
+  busyDiv.id = 'reportBusyState';
+  busyDiv.className = 'text-center py-12';
+  busyDiv.innerHTML = `
+    <div class="text-4xl mb-4">🌊</div>
+    <p class="text-xl text-amber-700 font-medium mb-2" data-i18n="common.oracleBusy">
+      ${t('common.oracleBusy')}
+    </p>
+    <p class="text-gray-500 mb-6" data-i18n="common.oracleBusySub">
+      ${t('common.oracleBusySub')}
+    </p>
+    <button id="retryReportBtn" class="btn-primary px-6 py-3 text-white font-semibold rounded-xl">
+      <span data-i18n="common.oracleBusyRetry">${t('common.oracleBusyRetry')}</span>
+    </button>
+  `;
+
+  reportContainer.innerHTML = '';
+  reportContainer.appendChild(busyDiv);
+
+  document.getElementById('retryReportBtn').addEventListener('click', () => {
+    generateReport();
+  });
+}
+
 function showReportContent() {
   document.getElementById('reportLoading').classList.add('hidden');
   document.getElementById('reportError').classList.add('hidden');
@@ -350,6 +385,12 @@ async function generateReport() {
     const data = await response.json();
 
     if (data.error) {
+      // Special handling for oracle_busy (user provided question but timed out)
+      if (data.error === 'oracle_busy') {
+        clearInterval(messageInterval);
+        showReportBusy();
+        return;
+      }
       throw new Error(data.error);
     }
 
