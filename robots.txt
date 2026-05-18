@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow sensitive/hidden paths if any
+Disallow: /api/
+Disallow: /node_modules/
+Disallow: /.git/
+
+Sitemap: https://www.get-astraea.com/sitemap.xml

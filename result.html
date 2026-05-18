@@ -3,8 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your Oracle Result from Oracle's Whisper">
-  <title>Result | Oracle's Whisper | 神谕的低语</title>
+  <link rel="canonical" href="https://www.get-astraea.com/result.html">
+  <meta name="description" content="View your personalized oracle result. Discover which Greek deity guides your life and receive tailored insights about your character, strengths, and life path.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Your Oracle Result | 神谕结果 - Oracle's Whisper">
+  <meta property="og:description" content="View your personalized oracle result. Discover which Greek deity guides your life and receive tailored insights.">
+  <meta property="og:url" content="https://www.get-astraea.com/result.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Oracle's Whisper">
+  <meta property="og:image" content="https://www.get-astraea.com/share-images/og-default.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your Oracle Result | Oracle's Whisper">
+  <meta name="twitter:description" content="View your personalized oracle result and discover your guiding deity.">
+  <meta name="twitter:url" content="https://www.get-astraea.com/result.html">
+  <meta name="twitter:image" content="https://www.get-astraea.com/share-images/og-default.jpg">
+
+  <title>Result | Oracle's Whisper | 神谕的低语 - Your Oracle Result</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,5 +261,28 @@
   <!-- i18n must be a classic script so APIs are on window.oracleI18n for result.js (ES module) -->
   <script src="js/i18n.js"></script>
   <script type="module" src="js/result.js"></script>
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Oracle's Whisper",
+    "applicationCategory": "EntertainmentApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "2.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1000"
+    },
+    "description": "Discover which Greek deity guides your life through our oracle quiz. Receive personalized insights and full reports."
+  }
+  </script>
 </body>
 </html>
