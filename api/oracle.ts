@@ -130,6 +130,10 @@ export default async function handler(request: Request): Promise<Response> {
       );
     }
 
+    // Add timeout to fetch (20 seconds)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+
     const response = await fetch(DEEPSEEK_API_URL, {
       method: 'POST',
       headers: {
@@ -142,24 +146,27 @@ export default async function handler(request: Request): Promise<Response> {
           {
             role: 'system',
             content: lang === 'zh'
-              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。'
-              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words.'
+              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，800字以内。'
+              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, under 800 words.'
           },
           {
             role: 'user',
             content: prompt
           }
         ],
-        max_tokens: 2000,
+        max_tokens: 1200,
         temperature: 0.8
-      })
+      }),
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('DeepSeek API error:', errorData);
+      console.error('DeepSeek API error:', errorData, 'Status:', response.status);
       return new Response(
-        JSON.stringify({ error: 'Failed to generate oracle report' }),
+        JSON.stringify({ error: 'Failed to generate oracle report', status: response.status }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -189,8 +196,11 @@ export default async function handler(request: Request): Promise<Response> {
 
   } catch (error) {
     console.error('Oracle generation error:', error);
+    const errorMessage = error instanceof Error && error.name === 'AbortError'
+      ? 'Request timeout - please try again'
+      : 'Internal server error';
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: errorMessage }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
