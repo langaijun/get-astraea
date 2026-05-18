@@ -21,6 +21,34 @@ interface OracleResponse {
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
+// Fallback reports when AI fails
+const FALLBACK_REPORTS = {
+  en: {
+    identity: `## Your Oracle Identity\n\nYou have a deep connection to the divine. The oracle has taken a sip of water and offers you this truth.`,
+    wisdom: `## The Wisdom Within\n\nYour heart knows the way forward. Trust your intuition, for it is the voice of the gods speaking through you.`,
+    tides: `## Navigating Current Tides\n\nThe water settles when we let go. Breathe deeply, and the path will reveal itself.`,
+    practices: `## Sacred Practices for Daily Life\n\n- Take three deep breaths before making decisions\n- Spend five minutes in silence each morning\n- Trust your first instinct`,
+    blessing: `## A Closing Blessing\n\nMay you walk in wisdom and peace. The gods walk with you, always.`
+  },
+  zh: {
+    identity: `## 你的神谕身份\n\n你与神祇有着深深的连接。神祇喝了杯水，然后告诉你这个真相。`,
+    wisdom: `## 内在的智慧\n\n你的心知道前进的方向。相信你的直觉，因为它是神祇通过你发出的声音。`,
+    tides: `## 穿越当下的潮汐\n\n当我们放下时，水会平静下来。深呼吸，道路自然会显现。`,
+    practices: `## 日常生活的神圣实践\n\n- 做决定前深呼吸三次\n- 每天早上花五分钟静默\n- 相信你的第一直觉`,
+    blessing: `## 结尾祝福\n\n愿你带着智慧和和平前行。神祇永远与你同在。`
+  }
+};
+
+function generateFallbackReport(lang: 'en' | 'zh', godName: string): string {
+  const f = lang === 'en' ? FALLBACK_REPORTS.en : FALLBACK_REPORTS.zh;
+  // Personalize with god name
+  return f.identity.replace('the oracle', godName) +
+         '\n\n' + f.wisdom +
+         '\n\n' + f.tides +
+         '\n\n' + f.practices +
+         '\n\n' + f.blessing;
+}
+
 function generatePromptEN(godName: string, trait: string, quote: string, userInput: string): string {
   return `You are a gentle, wise oracle from ancient Greek mythology. Your task is to create a personalized oracle reading for someone whose guiding deity is ${godName}.
 
@@ -165,9 +193,11 @@ export default async function handler(request: Request): Promise<Response> {
     if (!response.ok) {
       const errorData = await response.text();
       console.error('DeepSeek API error:', errorData, 'Status:', response.status);
+      // Return fallback report instead of error
+      const fallbackReport = generateFallbackReport(lang, lang === 'zh' ? godNameZh : godName);
       return new Response(
-        JSON.stringify({ error: 'Failed to generate oracle report', status: response.status }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+        JSON.stringify({ report: fallbackReport }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -175,9 +205,11 @@ export default async function handler(request: Request): Promise<Response> {
     const report = data.choices?.[0]?.message?.content || '';
 
     if (!report) {
+      // Return fallback report instead of error
+      const fallbackReport = generateFallbackReport(lang, lang === 'zh' ? godNameZh : godName);
       return new Response(
-        JSON.stringify({ error: 'No report generated' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+        JSON.stringify({ report: fallbackReport }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -196,12 +228,11 @@ export default async function handler(request: Request): Promise<Response> {
 
   } catch (error) {
     console.error('Oracle generation error:', error);
-    const errorMessage = error instanceof Error && error.name === 'AbortError'
-      ? 'Request timeout - please try again'
-      : 'Internal server error';
+    // Return fallback report instead of error
+    const fallbackReport = generateFallbackReport(lang, lang === 'zh' ? godNameZh : godName);
     return new Response(
-      JSON.stringify({ error: errorMessage }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ report: fallbackReport }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   }
 }
