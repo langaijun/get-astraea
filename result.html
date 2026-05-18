@@ -71,6 +71,15 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .report-section-title {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .report-section-content {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
   </style>
 </head>
 <body class="text-gray-800">
@@ -82,8 +91,9 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="min-h-screen flex items-center justify-center px-4 py-12 pb-32">
-    <div class="max-w-2xl w-full space-y-6">
+  <main class="min-h-screen flex flex-col px-4 py-12">
+    <div class="flex-1 flex items-center justify-center">
+      <div class="max-w-2xl w-full space-y-6">
       <!-- Loading State -->
       <div id="loadingState" class="text-center py-20">
         <div class="animate-spin w-12 h-12 border-4 border-amber-200 border-t-amber-500 rounded-full mx-auto mb-4"></div>
@@ -217,16 +227,17 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 
   <!-- Footer -->
-  <footer class="fixed bottom-4 left-0 right-0 w-full bg-gradient-to-r from-amber-100 to-amber-50 py-3">
+  <footer class="w-full bg-gradient-to-r from-amber-100 to-amber-50 py-4 mt-8">
     <div class="text-center">
       <p class="text-amber-800/60 text-xs">
         <span data-i18n="footer.disclaimer">For entertainment reference only.</span>
       </p>
     </div>
   </footer>
+  </main>
 
   <!-- i18n must be a classic script so APIs are on window.oracleI18n for result.js (ES module) -->
   <script src="js/i18n.js"></script>

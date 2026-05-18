@@ -145,10 +145,19 @@ function renderResult() {
 
   const lang = getCurrentLang();
 
+  // Check if user has paid (report section is visible or payment status was paid)
+  const urlParams = new URLSearchParams(window.location.search);
+  const hasPaid = urlParams.get('status') === 'paid' || !document.getElementById('reportSection').classList.contains('hidden');
+
   // Hide loading, show result
   document.getElementById('loadingState').classList.add('hidden');
   document.getElementById('errorState').classList.add('hidden');
   document.getElementById('resultCard').classList.remove('hidden');
+
+  // Hide free reading section if paid
+  if (hasPaid) {
+    document.getElementById('freeReadingSection').classList.add('hidden');
+  }
 
   // Update god avatar (emoji circle in #godAvatar; share sits on .god-card corner)
   const avatarIconEl = document.getElementById('godAvatarIcon');
@@ -178,8 +187,10 @@ function renderResult() {
   document.getElementById('godQuote').textContent =
     resultGod.quotes[lang] || resultGod.quotes.en;
 
-  // Render free reading
-  renderFreeReading();
+  // Render free reading only if not paid
+  if (!hasPaid) {
+    renderFreeReading();
+  }
 }
 
 function renderFreeReading() {
@@ -357,65 +368,71 @@ function displayReport(report) {
 
   const sectionsContainer = document.getElementById('reportSections');
 
-  // Parse report into sections (assuming markdown-like format)
-  const sections = parseReportSections(report);
+  // Parse report into sections and content blocks
+  const blocks = parseReportBlocks(report);
 
   sectionsContainer.innerHTML = '';
 
-  sections.forEach((section, index) => {
-    const sectionDiv = document.createElement('div');
-    sectionDiv.className = 'report-section fade-in';
-    sectionDiv.style.animationDelay = `${index * 0.1}s`;
+  blocks.forEach((block, index) => {
+    const blockDiv = document.createElement('div');
+    blockDiv.className = 'fade-in';
+    blockDiv.style.animationDelay = `${index * 0.1}s`;
 
-    if (section.title) {
-      const title = document.createElement('h3');
-      title.className = 'font-title text-xl font-bold text-amber-900 mb-3';
-      title.textContent = section.title;
-      sectionDiv.appendChild(title);
-    }
-
-    if (section.content) {
+    if (block.type === 'content') {
       const content = document.createElement('div');
-      content.className = 'text-gray-700 leading-relaxed';
-      content.innerHTML = formatMarkdown(section.content);
-      sectionDiv.appendChild(content);
+      content.className = 'text-gray-700 leading-relaxed report-section-content';
+      content.innerHTML = formatMarkdown(block.content);
+      blockDiv.appendChild(content);
+    } else if (block.type === 'title') {
+      const title = document.createElement('h3');
+      title.className = 'font-title text-xl font-bold text-amber-900 report-section-title text-center';
+      title.textContent = block.content;
+      blockDiv.appendChild(title);
     }
 
-    sectionsContainer.appendChild(sectionDiv);
+    sectionsContainer.appendChild(blockDiv);
   });
 }
 
-function parseReportSections(report) {
-  // Simple parser for report sections
-  // Expect format: ## Section Title\nContent...
-  const sections = [];
+function parseReportBlocks(report) {
+  // Parse report into alternating content and title blocks
+  // Format: ## Title\nContent\n\n## Next Title\nContent...
+  // Render order: Title1 -> Content1 -> Title2 -> Content2 -> ...
+  const blocks = [];
   const lines = report.split('\n');
-  let currentSection = { title: '', content: '' };
+  let currentTitle = '';
+  let currentContent = '';
 
   lines.forEach(line => {
     if (line.startsWith('## ')) {
-      // Save previous section
-      if (currentSection.title || currentSection.content) {
-        sections.push(currentSection);
+      // When we encounter a new title, push the previous title and content (if both exist)
+      if (currentTitle) {
+        blocks.push({ type: 'title', content: currentTitle });
       }
-      // Start new section
-      currentSection = { title: line.replace('## ', ''), content: '' };
+      if (currentContent.trim()) {
+        blocks.push({ type: 'content', content: currentContent.trim() });
+        currentContent = '';
+      }
+      currentTitle = line.replace('## ', '').trim();
     } else {
-      currentSection.content += line + '\n';
+      currentContent += line + '\n';
     }
   });
 
-  // Add last section
-  if (currentSection.title || currentSection.content) {
-    sections.push(currentSection);
+  // Push remaining title and content
+  if (currentTitle) {
+    blocks.push({ type: 'title', content: currentTitle });
+  }
+  if (currentContent.trim()) {
+    blocks.push({ type: 'content', content: currentContent.trim() });
   }
 
-  // If no sections found, treat entire report as one section
-  if (sections.length === 0) {
-    sections.push({ title: '', content: report });
+  // If no sections found, treat entire report as content
+  if (blocks.length === 0) {
+    blocks.push({ type: 'content', content: report.trim() });
   }
 
-  return sections;
+  return blocks;
 }
 
 function formatMarkdown(text) {
