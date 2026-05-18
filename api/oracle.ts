@@ -26,18 +26,18 @@ const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 const GOD_FALLBACK_REPORTS = {
   athena: {
     en: {
-      identity: `## Your Oracle Identity\n\nYou are connected to Athena's wisdom. She took a sip of water from her well of knowledge and shares this with you.`,
-      wisdom: `## The Wisdom Within\n\nYour mind is sharp like Athena's spear. You see patterns others miss. Trust your analytical ability—it is a gift, not a burden.`,
-      tides: `## Navigating Current Tides\n\nBefore acting, ask: "What matters most?" Strategy comes from clarity. Pause, reflect, then move with purpose.`,
-      practices: `## Sacred Practices for Daily Life\n\n- Before decisions, list three options and their outcomes\n- Keep a "wisdom journal" to track what works\n- Share knowledge freely—it returns`,
-      blessing: `## A Closing Blessing\n\nMay your mind be clear, your path be just, and your wisdom light the way for others.`
+      identity: `## Your Oracle Identity\n\nAthena, the goddess of wisdom and strategy, walks beside you. She took a sip of water from her sacred well of knowledge, her owl perched silently on her shoulder, and this message flows to you.\n\nYou are not merely intelligent—you are wise. There is a difference: intelligence gathers facts, but wisdom understands meaning. Athena chose you because you have the capacity to see beyond appearances, to question what others accept without thought. Her aegis shield protects you not from battle, but from the illusion that force is necessary.`,
+      wisdom: `## The Wisdom Within\n\nYour mind is sharp like Athena's spear, but true wisdom lies not in sharpness alone—it lies in knowing when to strike and when to sheath the blade. You see patterns that others miss because you observe deeply. Trust your analytical ability; it is not a burden, but a gift that allows you to navigate complexity with grace.\n\nThere is also a quieter wisdom within you—one that knows when to speak and when to remain silent. Athena is not only the goddess of strategic warfare; she is also the patroness of crafts, of weaving, of the patient creation that turns thread into tapestry. This duality lives in you: the warrior who can also weave peace.`,
+      tides: `## Navigating Current Tides\n\nBefore acting, ask: "What matters most here?" Strategy comes from clarity, and clarity comes from pausing. In the rush of modern life, we often forget that the first move is not always the best move. Athena teaches us to step back, survey the battlefield of our lives, and choose our path with intention.\n\nWhen you feel overwhelmed, return to the image of the owl watching from above. Wisdom comes from perspective—from seeing the whole forest, not just the trees that stand before you. Whatever challenge you face, there is a solution that honors all parts of yourself. Find it.`,
+      practices: `## Sacred Practices for Daily Life\n\n- **Morning Wisdom Ritual**: Before you begin your day, take three minutes to write down your most important priorities. Not ten, not five—three. These three will guide your actions.\n\n- **The Pause Method**: Before making any significant decision, count to seven. In those seven seconds, imagine Athena's owl taking flight and surveying the situation from above. What does it see?\n\n- **Wisdom Journal**: Each evening, write down one thing you learned about yourself or your world today. Wisdom accumulates not from big epiphanies alone, but from small, consistent reflections.\n\n- **Share Freely**: Share knowledge freely with others, but with discernment. Not everyone deserves access to your inner library. Trust your gut about who receives your light.`,
+      blessing: `## A Closing Blessing\n\nMay your mind be clear as the owl's night vision, your path be just as Athena's shield, and your wisdom light the way not just for yourself but for all who walk beside you. May you remember that the greatest battles are won not with swords, but with understanding, patience, and the courage to see what truly matters.`
     },
     zh: {
-      identity: `## 你的神谕身份\n\n你与雅典娜的智慧相连。她从知识之井中喝了口水，与你分享这份领悟。`,
-      wisdom: `## 内在的智慧\n\n你的头脑像雅典娜的长矛一样敏锐。你能看到别人看不到的模式。相信你的分析能力——这是天赋，不是负担。`,
-      tides: `## 穿越当下的潮汐\n\n行动之前，问自己："什么最重要？" 策略来自清晰。停顿，反思，然后有目的地行动。`,
-      practices: `## 日常生活的神圣实践\n\n- 做决定前列出三个选项及其结果\n- 记录"智慧日记"，追踪什么有效\n- 自由分享知识——它会回来`,
-      blessing: `## 结尾祝福\n\n愿你的头脑清晰，道路公正，智慧照亮他人的前行之路。`
+      identity: `## 你的神谕身份\n\n雅典娜，智慧与策略女神，与你同行。她从神圣的知识之井中啜饮，猫头鹰安静地停在她肩上，这条信息流向你。\n\n你不只是聪明——你是智慧的。两者有区别：聪明收集事实，但智慧理解意义。雅典娜选择了你，因为你有能力超越表象，去质疑别人不经思考就接受的东西。她的埃吉斯盾牌保护你的不是战斗，而是相信力量必要的幻觉。`,
+      wisdom: `## 内在的智慧\n\n你的头脑像雅典娜的长矛一样敏锐，但真正的智慧不在于锋利——而在于知道何时出击，何时收剑入鞘。你看到别人错过的模式，因为你观察得更深。相信你的分析能力；这不是负担，而是让你优雅地驾驭复杂性的天赋。\n\n你内心还有一种更安静的智慧——知道何时说话，何时保持沉默。雅典娜不仅是战略战争女神，她也是手工艺、编织、耐心创造的守护神，将线变成挂毯。这种双重性存在于你体内：战士，也可以编织和平。`,
+      tides: `## 穿越当下的潮汐\n\n行动之前，问自己："这里最重要的是什么？" 策略来自清晰，而清晰来自停顿。在现代生活的匆忙中，我们常常忘记第一步并不总是最好的一步。雅典娜教导我们退后一步，俯视我们生活的战场，有意图地选择我们的道路。\n\n当你感到不知所措时，回到从上方俯视的猫头鹰的形象。智慧来自视角——看到整片森林，而不仅仅是眼前的树木。无论你面临什么挑战，都有一个尊重你所有部分的解决方案。找到它。`,
+      practices: `## 日常生活的神圣实践\n\n- **晨间智慧仪式**：在开始你的一天之前，花三分钟写下你最重要的三个优先事项。不是十个，不是五个——就是三个。这三个将指导你的行动。\n\n- **暂停法**：在做出任何重大决定之前，数到七。在这七秒钟里，想象雅典娜的猫头鹰起飞并从上方俯视情况。它看到了什么？\n\n- **智慧日记**：每天晚上，写下你今天学到的关于自己或世界的一件事。智慧不仅来自大的顿悟，也来自小而持续的反思。\n\n- **自由分享**：自由地与他人分享知识，但要有分辨力。不是每个人都值得进入你的内心图书馆。相信你的直觉，判断谁应该接受你的光。`,
+      blessing: `## 结尾祝福\n\n愿你的头脑像猫头鹰的夜视一样清晰，你的道路像雅典娜的盾牌一样公正，你的智慧不仅照亮你自己的路，也照亮所有与你同行的人。愿你记住，最伟大的战役不是用剑赢得的，而是用理解、耐心和看到真正重要的勇气。`
     }
   },
   apollo: {
@@ -344,9 +344,9 @@ export default async function handler(request: Request): Promise<Response> {
       );
     }
 
-    // Add timeout to fetch (20 seconds)
+    // Add timeout to fetch (15 seconds for quick response)
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000);
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     const response = await fetch(DEEPSEEK_API_URL, {
       method: 'POST',
@@ -360,15 +360,15 @@ export default async function handler(request: Request): Promise<Response> {
           {
             role: 'system',
             content: lang === 'zh'
-              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，800字以内。'
-              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, under 800 words.'
+              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，总共300-500字。'
+              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, total 300-500 words.'
           },
           {
             role: 'user',
             content: prompt
           }
         ],
-        max_tokens: 1200,
+        max_tokens: 800,
         temperature: 0.8
       }),
       signal: controller.signal
@@ -379,20 +379,9 @@ export default async function handler(request: Request): Promise<Response> {
     if (!response.ok) {
       const errorData = await response.text();
       console.error('DeepSeek API error:', errorData, 'Status:', response.status);
-
-      // If user provided a question, cannot use fallback - return error
-      if (userInput && userInput.trim()) {
-        return new Response(
-          JSON.stringify({ error: 'oracle_busy' }), // Special error code for frontend
-          { status: 500, headers: { 'Content-Type': 'application/json' } }
-        );
-      }
-
-      // No user input - use personalized fallback report
-      const fallbackReport = generateFallbackReport(god, lang, lang === 'zh' ? godNameZh : godName, trait);
       return new Response(
-        JSON.stringify({ report: fallbackReport, isFallback: true }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
+        JSON.stringify({ error: 'oracle_busy' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -400,19 +389,9 @@ export default async function handler(request: Request): Promise<Response> {
     const report = data.choices?.[0]?.message?.content || '';
 
     if (!report) {
-      // If user provided a question, cannot use fallback - return error
-      if (userInput && userInput.trim()) {
-        return new Response(
-          JSON.stringify({ error: 'oracle_busy' }),
-          { status: 500, headers: { 'Content-Type': 'application/json' } }
-        );
-      }
-
-      // No user input - use personalized fallback report
-      const fallbackReport = generateFallbackReport(god, lang, lang === 'zh' ? godNameZh : godName, trait);
       return new Response(
-        JSON.stringify({ report: fallbackReport, isFallback: true }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
+        JSON.stringify({ error: 'oracle_busy' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -431,29 +410,9 @@ export default async function handler(request: Request): Promise<Response> {
 
   } catch (error) {
     console.error('Oracle generation error:', error);
-
-    // If user provided a question, cannot use fallback - return error
-    const body = request.method === 'POST' ? await request.clone().json() : {};
-    const userInput = body.userInput;
-
-    if (userInput && userInput.trim()) {
-      return new Response(
-        JSON.stringify({ error: 'oracle_busy' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    // No user input - use personalized fallback report
-    const lang = body.lang || 'en';
-    const god = body.god || '';
-    const godName = body.godName || '';
-    const godNameZh = body.godNameZh || '';
-    const trait = body.trait || '';
-
-    const fallbackReport = generateFallbackReport(god, lang, lang === 'zh' ? godNameZh : godName, trait);
     return new Response(
-      JSON.stringify({ report: fallbackReport, isFallback: true }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ error: 'oracle_busy' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 }

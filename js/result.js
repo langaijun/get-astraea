@@ -253,8 +253,22 @@ function setupPayPalButton() {
   paypalBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // Save user input to sessionStorage
+    // Check if user provided input (required)
     const userInput = document.getElementById('userInput')?.value.trim() || '';
+    if (!userInput) {
+      // Show error on input field
+      const inputField = document.getElementById('userInput');
+      inputField.classList.add('border-red-500');
+      inputField.focus();
+
+      // Remove error after user types
+      inputField.addEventListener('input', function removeError() {
+        inputField.classList.remove('border-red-500');
+        inputField.removeEventListener('input', removeError);
+      });
+      return;
+    }
+
     sessionStorage.setItem('oracle-user-question', userInput);
 
     // Build return URL

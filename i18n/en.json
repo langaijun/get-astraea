@@ -49,8 +49,9 @@
     "yourTraits": "Your Core Traits",
     "mythMapping": "Mythological Mapping",
     "lifeAdvice": "Life Advice",
-    "inputPlaceholder": "What would you like guidance on? (Optional)",
-    "inputHint": "Share any confusion, questions, or areas of life you would like the oracle to address..."
+    "inputPlaceholder": "What would you like guidance on?",
+    "inputHint": "Share your confusion, questions, or areas of life you would like the oracle to address...",
+    "inputRequired": "Please enter your question. The oracle will create a personalized reading for you."
   },
   "footer": {
     "disclaimer": "For entertainment reference only | We are all children of gods, you deserve a good life"
