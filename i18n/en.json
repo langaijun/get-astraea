@@ -104,5 +104,43 @@
     "contact": "Contact",
     "contactContent": "Questions or concerns? Contact us at: hello@astraea.blog",
     "closing": "We are all children of gods. You deserve a good life."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you want to know about Oracle's Whisper",
+    "q1": {
+      "question": "What is Oracle's Whisper?",
+      "answer": "Oracle's Whisper is a personality quiz inspired by Greek mythology. Through 12 thoughtful questions, you'll discover which of the 12 Greek deities best represents your inner strengths, character, and life path. The quiz is designed for self-reflection and entertainment, helping you connect with ancient wisdom in a modern way."
+    },
+    "q2": {
+      "question": "How long does the quiz take?",
+      "answer": "The quiz takes about 5 minutes to complete. Each of the 12 questions presents 4 options, and there are no right or wrong answers. Take your time and choose the option that resonates most with you."
+    },
+    "q3": {
+      "question": "Which deities can I get?",
+      "answer": "There are 12 Greek deities you can be matched with: Athena, Apollo, Artemis, Hestia, Demeter, Hephaestus, Hermes, Aphrodite, Dionysus, Persephone, Hebe, and Iris. Each represents different aspects of human nature, such as wisdom, creativity, nurturing, transformation, and more."
+    },
+    "q4": {
+      "question": "What's the difference between free and premium results?",
+      "answer": "The free result shows your guiding deity with a brief introduction, core traits, and general life suggestions. The premium result, powered by AI, provides a personalized 300-500 word report that includes your inner wisdom, guidance for your specific situation, daily sacred practices, and a blessing. You can also ask a specific question for the AI to address in your reading."
+    },
+    "q5": {
+      "question": "Is my data collected or stored?",
+      "answer": "Your quiz answers are stored locally in your browser and are not sent to any server. For premium results, only the information you type in the input field is sent to our AI service to generate your personalized reading. We do not collect or store personal information on our servers. Please see our Privacy Policy for more details."
+    },
+    "q6": {
+      "question": "Can I take the quiz again?",
+      "answer": "Yes, you can take the quiz as many times as you like. Your result may change depending on your answers, as different life phases and moods can reveal different aspects of your character. Each experience is an opportunity for self-reflection."
+    },
+    "q7": {
+      "question": "Is this quiz scientifically accurate?",
+      "answer": "Oracle's Whisper is designed for entertainment and self-reflection, not as a psychological or personality assessment tool. The deities are archetypes from Greek mythology that can offer symbolic insights into your character and life journey. Treat the results as gentle guidance for reflection, not absolute truth."
+    },
+    "q8": {
+      "question": "How is my result generated?",
+      "answer": "Your result is generated based on a scoring system that maps your answers to the traits associated with each deity. Each question is designed to reveal different aspects of your character, and the combination of your answers points to the deity whose qualities best match your responses."
+    },
+    "cta": "Ready to discover your guiding deity?",
+    "takeQuiz": "Take the Quiz"
   }
 }

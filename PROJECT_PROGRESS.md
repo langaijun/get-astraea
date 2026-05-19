@@ -33,7 +33,23 @@
 ### 分享功能 ✅
 - [x] Canvas 分享卡片生成 (share.js)
 
+### SEO 优化 ✅
+- [x] robots.txt, sitemap.xml
+- [x] Canonical, OG, Twitter Card
+- [x] JSON-LD Schema (WebSite, Quiz)
+- [x] Favicon
+- [x] 移除错误 hreflang
+- [x] 补全 meta 标签 (og:image:alt, og:locale 等)
+- [x] 静态资源缓存 (vercel.json)
+- [x] 字体 display:swap
+
 ## 待完成 / 需要调整
+
+### SEO 任务 (2026-05-19 继续)
+- [ ] FAQ page + FAQ schema
+- [ ] Google Search Console 验证
+- [ ] 神祇独立页 (12个 SEO landing pages)
+- [ ] 百度站长平台验证
 
 ### 待优化
 - [ ] premium.html 输入框布局调整（用户反馈旧布局仍显示）

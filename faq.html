@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.get-astraea.com/faq.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Frequently asked questions about Oracle's Whisper - your Greek mythology personality quiz. Learn about the quiz, the deities, and how your result is generated.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FAQ | Oracle's Whisper | 常见问题 - 神谕的低语">
+  <meta property="og:description" content="Frequently asked questions about Oracle's Whisper quiz and results.">
+  <meta property="og:url" content="https://www.get-astraea.com/faq.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Oracle's Whisper">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:image" content="https://www.get-astraea.com/share-images/og-default.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Oracle's Whisper FAQ - Greek mythology quiz questions">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ | Oracle's Whisper">
+  <meta name="twitter:description" content="Frequently asked questions about the Greek mythology personality quiz.">
+  <meta name="twitter:url" content="https://www.get-astraea.com/faq.html">
+  <meta name="twitter:image" content="https://www.get-astraea.com/share-images/og-default.svg">
+
+  <title>FAQ | Oracle's Whisper | 常见问题 - 神谕的低语</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #F59E0B;
+      --background: #FEF3C7;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 50%, #FEF3C7 100%);
+      min-height: 100vh;
+    }
+    .font-title {
+      font-family: 'Cinzel', serif;
+    }
+    .card-glow {
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-answer.open {
+      max-height: 500px;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+  <!-- Language Toggle -->
+  <nav class="absolute top-4 right-4 z-10">
+    <button id="langToggle" class="px-4 py-2 bg-white/80 backdrop-blur rounded-full text-sm font-medium hover:bg-white transition-colors card-glow">
+      EN / 中
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="min-h-screen flex flex-col px-4 py-12">
+    <div class="max-w-3xl w-full mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-10">
+        <h1 class="font-title text-4xl md:text-5xl font-bold text-amber-800 mb-4" data-i18n="faq.title">
+          Frequently Asked Questions
+        </h1>
+        <p class="text-gray-600 text-lg" data-i18n="faq.subtitle">
+          Everything you want to know about Oracle's Whisper
+        </p>
+      </div>
+
+      <!-- FAQ Items -->
+      <div class="space-y-4 mb-12">
+        <!-- Q1 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q1">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q1.question">What is Oracle's Whisper?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q1.answer">
+              Oracle's Whisper is a personality quiz inspired by Greek mythology. Through 12 thoughtful questions, you'll discover which of the 12 Greek deities best represents your inner strengths, character, and life path. The quiz is designed for self-reflection and entertainment, helping you connect with ancient wisdom in a modern way.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q2">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q2.question">How long does the quiz take?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q2.answer">
+              The quiz takes about 5 minutes to complete. Each of the 12 questions presents 4 options, and there are no right or wrong answers. Take your time and choose the option that resonates most with you.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q3">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q3.question">Which deities can I get?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q3.answer">
+              There are 12 Greek deities you can be matched with: Athena, Apollo, Artemis, Hestia, Demeter, Hephaestus, Hermes, Aphrodite, Dionysus, Persephone, Hebe, and Iris. Each represents different aspects of human nature, such as wisdom, creativity, nurturing, transformation, and more.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q4">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q4.question">What's the difference between free and premium results?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q4.answer">
+              The free result shows your guiding deity with a brief introduction, core traits, and general life suggestions. The premium result, powered by AI, provides a personalized 300-500 word report that includes your inner wisdom, guidance for your specific situation, daily sacred practices, and a blessing. You can also ask a specific question for the AI to address in your reading.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q5">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q5.question">Is my data collected or stored?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q5.answer">
+              Your quiz answers are stored locally in your browser and are not sent to any server. For premium results, only the information you type in the input field is sent to our AI service to generate your personalized reading. We do not collect or store personal information on our servers. Please see our Privacy Policy for more details.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q6">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q6.question">Can I take the quiz again?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q6.answer">
+              Yes, you can take the quiz as many times as you like. Your result may change depending on your answers, as different life phases and moods can reveal different aspects of your character. Each experience is an opportunity for self-reflection.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q7">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q7.question">Is this quiz scientifically accurate?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q7.answer">
+              Oracle's Whisper is designed for entertainment and self-reflection, not as a psychological or personality assessment tool. The deities are archetypes from Greek mythology that can offer symbolic insights into your character and life journey. Treat the results as gentle guidance for reflection, not absolute truth.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl card-glow overflow-hidden">
+          <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-amber-50 transition-colors" data-faq="q8">
+            <span class="font-semibold text-gray-800" data-i18n="faq.q8.question">How is my result generated?</span>
+            <span class="faq-icon text-amber-500 text-2xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-5">
+            <p class="text-gray-600 leading-relaxed" data-i18n="faq.q8.answer">
+              Your result is generated based on a scoring system that maps your answers to the traits associated with each deity. Each question is designed to reveal different aspects of your character, and the combination of your answers points to the deity whose qualities best match your responses.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center">
+        <p class="text-gray-600 mb-4" data-i18n="faq.cta">Ready to discover your guiding deity?</p>
+        <a href="quiz.html" class="inline-block px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold rounded-xl shadow-lg transition-all hover:shadow-xl">
+          <span data-i18n="faq.takeQuiz">Take the Quiz</span>
+          <span class="ml-2">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 mt-8">
+      <div class="text-gray-500 text-sm mb-2">
+        <span data-i18n="footer.disclaimer">For entertainment reference only | We are all children of gods, you deserve a good life</span>
+      </div>
+      <div class="flex justify-center gap-6 text-sm text-gray-500">
+        <a href="index.html" class="hover:text-amber-700 transition-colors">Home</a>
+        <a href="privacy.html" class="hover:text-amber-700 transition-colors">Privacy Policy</a>
+        <a href="disclaimer.html" class="hover:text-amber-700 transition-colors">Disclaimer</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script>
+    (async function() {
+      // Load translations
+      await loadTranslations('en');
+      await loadTranslations('zh');
+
+      // Initialize language
+      const lang = initI18n();
+      await loadTranslations(lang);
+      updatePageTranslations();
+
+      // Language toggle
+      document.getElementById('langToggle').addEventListener('click', async () => {
+        toggleLanguage();
+        await loadTranslations(getCurrentLang());
+        updatePageTranslations();
+      });
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answer = btn.nextElementSibling;
+          const icon = btn.querySelector('.faq-icon');
+          const isOpen = answer.classList.contains('open');
+
+          // Close all others
+          document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+          document.querySelectorAll('.faq-icon').forEach(i => {
+            i.textContent = '+';
+            i.style.transform = 'rotate(0deg)';
+          });
+
+          // Toggle current
+          if (!isOpen) {
+            answer.classList.add('open');
+            icon.textContent = '−';
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- JSON-LD FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Oracle's Whisper?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oracle's Whisper is a personality quiz inspired by Greek mythology. Through 12 thoughtful questions, you'll discover which of the 12 Greek deities best represents your inner strengths, character, and life path."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does the quiz take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The quiz takes about 5 minutes to complete. Each of the 12 questions presents 4 options, and there are no right or wrong answers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which deities can I get?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There are 12 Greek deities you can be matched with: Athena, Apollo, Artemis, Hestia, Demeter, Hephaestus, Hermes, Aphrodite, Dionysus, Persephone, Hebe, and Iris."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between free and premium results?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The free result shows your guiding deity with a brief introduction. The premium result provides a personalized 300-500 word AI-generated report with guidance for your specific situation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data collected or stored?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your quiz answers are stored locally in your browser. For premium results, only your input is sent to AI. We do not collect or store personal information."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I take the quiz again?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can take the quiz as many times as you like. Your result may change depending on your answers and life phase."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this quiz scientifically accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oracle's Whisper is designed for entertainment and self-reflection, not as a psychological assessment tool. Treat results as symbolic guidance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is my result generated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your result is generated based on a scoring system that maps your answers to the traits associated with each deity."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
