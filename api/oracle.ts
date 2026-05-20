@@ -244,7 +244,7 @@ function generatePromptEN(godName: string, trait: string, quote: string, userInp
 ${userInput ? `- They have shared this concern/question: "${userInput}"` : ''}
 
 ## Task
-Create a warm, encouraging, and insightful oracle report of approximately 1000 words. The tone should be:
+Create a warm, encouraging, and insightful oracle report of approximately 300-500 words. The tone should be:
 - Gentle and compassionate
 - Wise but accessible
 - Empowering and affirming
@@ -277,7 +277,7 @@ function generatePromptZH(godNameZh: string, traitZh: string, quoteZh: string, u
 ${userInput ? `- 他们分享了这样的困惑/问题："${userInput}"` : ''}
 
 ## 任务
-创建约 1000 字的温暖、鼓励和富有洞察力的神谕报告。语气应该是：
+创建约 300-500 字的温暖、鼓励和富有洞察力的神谕报告。语气应该是：
 - 温柔和富有同情心
 - 智慧但易于理解
 - 赋予力量和肯定
@@ -354,15 +354,15 @@ export default async function handler(request: Request): Promise<Response> {
           {
             role: 'system',
             content: lang === 'zh'
-              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，总共500-800字。'
-              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, total 500-800 words.'
+              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，总共300-500字。'
+              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, total 300-500 words.'
           },
           {
             role: 'user',
             content: prompt
           }
         ],
-        max_tokens: 2000,
+        max_tokens: 1200,
         temperature: 0.8
       }),
       signal: controller.signal
@@ -411,7 +411,8 @@ export default async function handler(request: Request): Promise<Response> {
   }
 }
 
-// Configure Edge Function
+// Configure Serverless Function (supports 60s timeout vs Edge 10s)
 export const config = {
-  runtime: 'edge'
+  runtime: 'nodejs',
+  maxDuration: 60
 };
