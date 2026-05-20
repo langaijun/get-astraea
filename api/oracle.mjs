@@ -293,7 +293,7 @@ export default async function handler(request) {
 
   try {
     const body = await request.json();
-    const { god, godName, godNameZh, trait, traitZh, quote, quoteZh, userInput, lang, answers } = body;
+    const { god, godName, godNameZh, trait, traitZh, quote, quoteZh, userInput, lang, answers, stream } = body;
 
     // Validate required fields
     if (!god || !godName || !lang) {
@@ -319,9 +319,9 @@ export default async function handler(request) {
       );
     }
 
-    // Add timeout to fetch (30 seconds for report generation)
+    // Stream enabled request
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    const timeoutId = setTimeout(() => controller.abort(), 60000);
 
     const response = await fetch(DEEPSEEK_API_URL, {
       method: 'POST',
@@ -331,6 +331,7 @@ export default async function handler(request) {
       },
       body: JSON.stringify({
         model: 'deepseek-chat',
+        stream: stream || false,
         messages: [
           {
             role: 'system',
@@ -360,28 +361,36 @@ export default async function handler(request) {
       );
     }
 
-    const data = await response.json();
-    const report = data.choices?.[0]?.message?.content || '';
+    // Check if streaming or regular response
+    const contentType = response.headers.get('content-type') || '';
 
-    if (!report) {
+    if (stream) {
+      // SSE Stream Response
+      return handleStreamResponse(response);
+    } else {
+      // Regular JSON Response
+      const data = await response.json();
+      const report = data.choices?.[0]?.message?.content || '';
+
+      if (!report) {
+        return new Response(
+          JSON.stringify({ error: 'oracle_busy' }),
+          { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      const result = { report, isFallback: false };
       return new Response(
-        JSON.stringify({ error: 'oracle_busy' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+        JSON.stringify(result),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
+          }
+        }
       );
     }
-
-    const result = { report, isFallback: false };
-
-    return new Response(
-      JSON.stringify(result),
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache, no-store, must-revalidate'
-        }
-      }
-    );
 
   } catch (error) {
     console.error('Oracle generation error:', error);
@@ -390,4 +399,55 @@ export default async function handler(request) {
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
+}
+
+// Handle SSE streaming response
+async function handleStreamResponse(response) {
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+
+  return new Response(
+    new ReadableStream({
+      async start(controller) {
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split('\n');
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                try {
+                  const jsonStr = line.slice(5);
+                  const data = JSON.parse(jsonStr);
+
+                  // Send SSE formatted data
+                  const sseEvent = `data: ${JSON.stringify(data)}\n\n`;
+                  controller.enqueue(new TextEncoder().encode(sseEvent));
+                } catch (e) {
+                  console.error('Error parsing SSE data:', e);
+                }
+              } else if (line.includes('[DONE]')) {
+                break;
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Stream processing error:', error);
+        } finally {
+          controller.close();
+        }
+      }
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive'
+      }
+    }
+  );
 }

@@ -367,6 +367,9 @@ function showReportContent() {
 
 async function generateReport() {
   showReportSection();
+
+  // Show skeleton screen
+  showReportSkeleton();
   showReportLoading();
 
   const loadingMessages = [
@@ -398,11 +401,12 @@ async function generateReport() {
     quoteZh: resultGod.quotes.zh,
     userInput: userInput,
     lang: lang,
-    answers: JSON.parse(sessionStorage.getItem('oracle-answers') || '[]')
+    answers: JSON.parse(sessionStorage.getItem('oracle-answers') || '[]'),
+    stream: true
   };
 
   try {
-    const response = await fetch('/api/oracle', {
+    const response = await fetch('/api/oracle.mjs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -416,25 +420,99 @@ async function generateReport() {
       throw new Error('Failed to generate report');
     }
 
-    const data = await response.json();
+    // Handle SSE streaming response
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let fullReport = '';
 
-    if (data.error) {
-      // Special handling for oracle_busy (user provided question but timed out)
-      if (data.error === 'oracle_busy') {
-        clearInterval(messageInterval);
-        showReportBusy();
-        return;
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const jsonStr = line.slice(5);
+              const data = JSON.parse(jsonStr);
+              fullReport += data.content || '';
+              appendStreamedContent(data.content);
+            } catch (e) {
+              console.error('Error parsing SSE data:', e);
+            }
+          } else if (line.includes('[DONE]')) {
+            break;
+          }
+        }
       }
-      throw new Error(data.error);
+    } catch (streamError) {
+      console.error('Stream reading error:', streamError);
+      // Fall back to regular response if streaming fails
+      const data = await response.json();
+      if (data.error) {
+        if (data.error === 'oracle_busy') {
+          clearInterval(messageInterval);
+          showReportBusy();
+          return;
+        }
+        throw new Error(data.error);
+      }
+      fullReport = data.report || '';
     }
 
-    // Display the report
-    displayReport(data.report);
+    // Hide skeleton and loading, show content
+    hideReportSkeleton();
+    showReportContent();
+    clearInterval(messageInterval);
+
+    // Display the complete report
+    displayReport(fullReport);
 
   } catch (error) {
     console.error('Error generating report:', error);
     clearInterval(messageInterval);
     showReportError();
+  }
+}
+
+// Show skeleton screen
+function showReportSkeleton() {
+  const skeleton = document.getElementById('reportSkeleton');
+  if (skeleton) {
+    skeleton.classList.remove('hidden');
+  }
+}
+
+// Hide skeleton screen
+function hideReportSkeleton() {
+  const skeleton = document.getElementById('reportSkeleton');
+  if (skeleton) {
+    skeleton.classList.add('hidden');
+  }
+}
+
+// Append streamed content to UI
+function appendStreamedContent(content) {
+  const container = document.getElementById('reportSections');
+  if (!container) return;
+
+  // Clear existing content and append new chunk
+  const previewDiv = document.createElement('div');
+  previewDiv.className = 'text-gray-700 leading-relaxed';
+  previewDiv.innerHTML = formatMarkdown(content);
+
+  container.innerHTML = '';
+  container.appendChild(previewDiv);
+}
+
+// Show report content (existing or streamed)
+function showReportContent() {
+  const contentDiv = document.getElementById('reportContent');
+  if (contentDiv) {
+    contentDiv.classList.remove('hidden');
   }
 }
 

@@ -209,6 +209,14 @@
         <!-- Report Section -->
         <div id="reportSection" class="hidden">
           <div class="god-card rounded-3xl p-6 md:p-8 card-glow mb-8">
+            <!-- Skeleton Screen -->
+            <div id="reportSkeleton" class="hidden">
+              <div class="space-y-6 py-8">
+                <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            </div>
             <div id="reportLoading" class="text-center py-12">
               <div class="animate-spin w-12 h-12 border-4 border-amber-200 border-t-amber-500 rounded-full mx-auto mb-4"></div>
               <p class="text-gray-500 text-sm" data-i18n="result.generating">Interpreting the whispers...</p>
