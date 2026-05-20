@@ -582,7 +582,7 @@ function formatMarkdown(text) {
   return text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\n\n/g, '</p><p class="mt-3">')
+    .replace(/\n/g, '<br>')
     .replace(/\n/g, '<br>');
 }
 
