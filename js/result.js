@@ -203,10 +203,19 @@ function renderFreeReading() {
   if (!reading) return;
 
   const contentDiv = document.getElementById('freeReadingContent');
+  if (!contentDiv) return;
 
-  const data = reading[lang];
+  try {
+    const data = reading[lang];
 
-  const descriptionHtml = zhEmDashToColon(data.description, lang).replace(/\n/g, '<br>');
+    // 数据完整性检查
+    if (!data || typeof data !== 'object') {
+      console.error('Invalid reading data:', data);
+      contentDiv.innerHTML = `<p class="text-gray-500">${t('common.error') || 'Data not available'}</p>`;
+      return;
+    }
+
+    const descriptionHtml = zhEmDashToColon(data.description, lang).replace(/\n/g, '<br>');
 
   const descHtml = `
     <div class="bg-amber-50 rounded-xl p-6 mb-6">
@@ -244,6 +253,17 @@ function renderFreeReading() {
   `;
 
   contentDiv.innerHTML = mythHtml + descHtml + traitsHtml + adviceHtml;
+  } catch (error) {
+    console.error('Error rendering free reading:', error);
+    contentDiv.innerHTML = `
+      <div class="bg-red-50 rounded-xl p-6 text-center">
+        <p class="text-red-700 mb-4">${t('common.error') || 'Something went wrong'}</p>
+        <button onclick="location.reload()" class="btn-primary px-4 py-2 text-white rounded-lg">
+          ${t('common.retry') || 'Try Again'}
+        </button>
+      </div>
+    `;
+  }
 }
 
 function setupPayPalButton() {

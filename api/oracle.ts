@@ -338,9 +338,9 @@ export default async function handler(request: Request): Promise<Response> {
       );
     }
 
-    // Add timeout to fetch (15 seconds for quick response)
+    // Add timeout to fetch (30 seconds for report generation)
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
 
     const response = await fetch(DEEPSEEK_API_URL, {
       method: 'POST',
@@ -354,15 +354,15 @@ export default async function handler(request: Request): Promise<Response> {
           {
             role: 'system',
             content: lang === 'zh'
-              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，总共300-500字。'
-              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, total 300-500 words.'
+              ? '你是一位温柔、睿智的神谕者，用温暖的词语给予人们指引和安慰。简洁有力，总共500-800字。'
+              : 'You are a gentle, wise oracle who provides guidance and comfort through warm, encouraging words. Be concise, total 500-800 words.'
           },
           {
             role: 'user',
             content: prompt
           }
         ],
-        max_tokens: 800,
+        max_tokens: 2000,
         temperature: 0.8
       }),
       signal: controller.signal
