@@ -1,0 +1,2 @@
+<claude-code-hint v="1" type="plugin" value="vercel@claude-plugins-official" />
+Error: Couldn't parse JSON file D:\shen\vercel-project\vercel.json.
