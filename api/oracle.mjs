@@ -282,12 +282,6 @@ ${userInput ? `- 他们分享了这样的困惑/问题："${userInput}"` : ''}
 记住：我们都是神的孩子。他们值得好的生活。你的话语应该帮助他们感到被看见、被理解和值得。`;
 }
 
-// Configure Serverless Function (supports 60s timeout vs Edge 10s)
-export const config = {
-  runtime: 'nodejs',
-  maxDuration: 60
-};
-
 export default async function handler(request) {
   // Only allow POST requests
   if (request.method !== 'POST') {

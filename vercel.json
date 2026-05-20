@@ -1,6 +1,11 @@
 {
   "buildCommand": "echo 'No build required'",
   "outputDirectory": ".",
+  "functions": {
+    "api/oracle.mjs": {
+      "maxDuration": 60
+    }
+  },
   "rewrites": [
     {
       "source": "/api/:path*",
