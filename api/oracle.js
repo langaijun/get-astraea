@@ -1,24 +1,5 @@
-// Vercel Edge Function - Oracle Report Generator
+// Vercel Serverless Function - Oracle Report Generator
 // Uses DeepSeek API to generate personalized oracle reports
-
-interface OracleRequest {
-  god: string;
-  godName: string;
-  godNameZh: string;
-  trait: string;
-  traitZh: string;
-  quote: string;
-  quoteZh: string;
-  userInput: string;
-  lang: 'en' | 'zh';
-  answers: number[];
-}
-
-interface OracleResponse {
-  report: string;
-  isFallback?: boolean;
-  error?: string;
-}
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
@@ -26,11 +7,11 @@ const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 const GOD_FALLBACK_REPORTS = {
   athena: {
     en: {
-      identity: `## Your Oracle Identity\n\nAthena, the goddess of wisdom and strategy, walks beside you. She took a sip of water from her sacred well of knowledge, her owl perched silently on her shoulder, and this message flows to you.\n\nYou are not merely intelligent—you are wise. There is a difference: intelligence gathers facts, but wisdom understands meaning. Athena chose you because you have the capacity to see beyond appearances, to question what others accept without thought. Her aegis shield protects you not from battle, but from the illusion that force is necessary.`,
-      wisdom: `## The Wisdom Within\n\nYour mind is sharp like Athena's spear, but true wisdom lies not in sharpness alone—it lies in knowing when to strike and when to sheath the blade. You see patterns that others miss because you observe deeply. Trust your analytical ability; it is not a burden, but a gift that allows you to navigate complexity with grace.\n\nThere is also a quieter wisdom within you—one that knows when to speak and when to remain silent. Athena is not only the goddess of strategic warfare; she is also the patroness of crafts, of weaving, of the patient creation that turns thread into tapestry. This duality lives in you: the warrior who can also weave peace.`,
+      identity: `## Your Oracle Identity\n\nAthena, goddess of wisdom and strategy, walks beside you. She took a sip of water from her sacred well of knowledge, her owl perched silently on her shoulder, and this message flows to you.\n\nYou are not merely intelligent—you are wise. There is a difference: intelligence gathers facts, but wisdom understands meaning. Athena chose you because you have the capacity to see beyond appearances, to question what others accept without thought. Her aegis shield protects you not from battle, but from the illusion that force is necessary.`,
+      wisdom: `## The Wisdom Within\n\nYour mind is sharp like Athena's spear, but true wisdom lies not in sharpness alone—it lies in knowing when to strike and when to sheathe the blade. You see patterns that others miss because you observe deeply. Trust your analytical ability; it is not a burden, but a gift that allows you to navigate complexity with grace.\n\nThere is also a quieter wisdom within you—one that knows when to speak and when to remain silent. Athena is not only the goddess of strategic warfare; she is also the patroness of crafts, of weaving, of patient creation that turns thread into tapestry. This duality lives in you: a warrior who can also weave peace.`,
       tides: `## Navigating Current Tides\n\nBefore acting, ask: "What matters most here?" Strategy comes from clarity, and clarity comes from pausing. In the rush of modern life, we often forget that the first move is not always the best move. Athena teaches us to step back, survey the battlefield of our lives, and choose our path with intention.\n\nWhen you feel overwhelmed, return to the image of the owl watching from above. Wisdom comes from perspective—from seeing the whole forest, not just the trees that stand before you. Whatever challenge you face, there is a solution that honors all parts of yourself. Find it.`,
       practices: `## Sacred Practices for Daily Life\n\n- **Morning Wisdom Ritual**: Before you begin your day, take three minutes to write down your most important priorities. Not ten, not five—three. These three will guide your actions.\n\n- **The Pause Method**: Before making any significant decision, count to seven. In those seven seconds, imagine Athena's owl taking flight and surveying the situation from above. What does it see?\n\n- **Wisdom Journal**: Each evening, write down one thing you learned about yourself or your world today. Wisdom accumulates not from big epiphanies alone, but from small, consistent reflections.\n\n- **Share Freely**: Share knowledge freely with others, but with discernment. Not everyone deserves access to your inner library. Trust your gut about who receives your light.`,
-      blessing: `## A Closing Blessing\n\nMay your mind be clear as the owl's night vision, your path be just as Athena's shield, and your wisdom light the way not just for yourself but for all who walk beside you. May you remember that the greatest battles are won not with swords, but with understanding, patience, and the courage to see what truly matters.`
+      blessing: `## A Closing Blessing\n\nMay your mind be clear as an owl's night vision, your path be as just as Athena's shield, and your wisdom light the way not just for yourself but for all who walk beside you. May you remember that the greatest battles are won not with swords, but with understanding, patience, and the courage to see what truly matters.`
     },
     zh: {
       identity: `## 你的神谕身份\n\n雅典娜，智慧与策略女神，与你同行。她从神圣的知识之井中啜饮，猫头鹰安静地停在她肩上，这条信息流向你。\n\n你不只是聪明——你是智慧的。两者有区别：聪明收集事实，但智慧理解意义。雅典娜选择了你，因为你有能力超越表象，去质疑别人不经思考就接受的东西。她的埃吉斯盾牌保护你的不是战斗，而是相信力量必要的幻觉。`,
@@ -123,7 +104,7 @@ const GOD_FALLBACK_REPORTS = {
   hermes: {
     en: {
       identity: `## Your Oracle Identity\n\nThe messenger god speaks through you. Hermes sipped from a stream and said: "Carry this forward."`,
-      wisdom: `## The Wisdom Within\n\nYou connect people, ideas, places. You are the bridge. Your adaptability is not flakiness—it is flexibility.`,
+      wisdom: `## The Wisdom Within\n\nYou connect people, ideas, places. You are a bridge. Your adaptability is not flakiness—it is flexibility.`,
       tides: `## Navigating Current Tides\n\nStay curious. Ask questions. Follow the interesting thread. The messenger finds the way.`,
       practices: `## Sacred Practices for Daily Life\n\n- Learn something new regularly\n- Connect two people who should meet\n- Travel, even if it's just a new route`,
       blessing: `## A Closing Blessing\n\nMay your messages be clear, your journeys be safe, and your connections be meaningful.`
@@ -139,7 +120,7 @@ const GOD_FALLBACK_REPORTS = {
   aphrodite: {
     en: {
       identity: `## Your Oracle Identity\n\nLove and beauty are your domain. Aphrodite bathed in rose water and left this reflection for you.`,
-      wisdom: `## The Wisdom Within\n\nYou see beauty others miss. Love is not romance—it is the force that connects everything. You are its conduit.`,
+      wisdom: `## The Wisdom Within\n\nYou see beauty that others miss. Love is not romance—it is the force that connects everything. You are its conduit.`,
       tides: `## Navigating Current Tides\n\nPractice self-love first. When you are full, others drink without you being drained. Beauty is presence, not performance.`,
       practices: `## Sacred Practices for Daily Life\n\n- Surround yourself with beauty\n- Speak kindly to yourself\n- Create moments of intimacy with friends`,
       blessing: `## A Closing Blessing\n\nMay you be deeply loved, truly seen, and surrounded by beauty.`
@@ -188,7 +169,7 @@ const GOD_FALLBACK_REPORTS = {
     en: {
       identity: `## Your Oracle Identity\n\nYouth and vitality are yours. Hebe filled a golden cup with water and offered: "Stay fresh, stay kind."`,
       wisdom: `## The Wisdom Within\n\nYour energy is a gift. Service to others is not subservience—it is how you shine. You lift the room.`,
-      tides: `## Navigating Current Tides\n\nStay light-hearted. Serious problems need light solutions. You are the breath of fresh air others need.`,
+      tides: `## Navigating Current Tides\n\nStay light-hearted. Serious problems need light solutions. You are a breath of fresh air that others need.`,
       practices: `## Sacred Practices for Daily Life\n\n- Help someone spontaneously\n- Keep your inner child alive\n- Approach life with playfulness`,
       blessing: `## A Closing Blessing\n\nMay your youth be eternal, your service be joyful, and your heart remain light.`
     },
@@ -202,10 +183,10 @@ const GOD_FALLBACK_REPORTS = {
   },
   iris: {
     en: {
-      identity: `## Your Oracle Identity\n\nYou are the messenger of good news. Iris dipped in the waterfall and carried this rainbow message to you.`,
+      identity: `## Your Oracle Identity\n\nYou are a messenger of good news. Iris dipped in a waterfall and carried this rainbow message to you.`,
       wisdom: `## The Wisdom Within\n\nYou connect the divided. You see bridges where others see gaps. Hope is what you carry.`,
       tides: `## Navigating Current Tides\n\nLook for the rainbow after rain. Good news is coming. Share it when you find it.`,
-      practices: `## Sacred Practices for Daily Life\n\n- Share good news when you hear it\n- Look for beauty in transitions\n- Be the connector in your circles`,
+      practices: `## Sacred Practices for Daily Life\n\n- Share good news when you hear it\n- Look for beauty in transitions\n- Be a connector in your circles`,
       blessing: `## A Closing Blessing\n\nMay your rainbows be bright, your connections be true, and your hope be contagious.`
     },
     zh: {
@@ -218,8 +199,8 @@ const GOD_FALLBACK_REPORTS = {
   }
 };
 
-function generateFallbackReport(god: string, lang: 'en' | 'zh', godName: string, trait: string): string {
-  const reports = GOD_FALLBACK_REPORTS[god as keyof typeof GOD_FALLBACK_REPORTS];
+function generateFallbackReport(god, lang, godName, trait) {
+  const reports = GOD_FALLBACK_REPORTS[god];
   if (!reports) {
     // Default fallback if god not found
     return lang === 'zh'
@@ -235,7 +216,7 @@ function generateFallbackReport(god: string, lang: 'en' | 'zh', godName: string,
          '\n\n' + f.blessing;
 }
 
-function generatePromptEN(godName: string, trait: string, quote: string, userInput: string): string {
+function generatePromptEN(godName, trait, quote, userInput) {
   return `You are a gentle, wise oracle from ancient Greek mythology. Your task is to create a personalized oracle reading for someone whose guiding deity is ${godName}.
 
 ## About the Person
@@ -268,7 +249,7 @@ End with a brief, beautiful blessing or affirmation they can carry with them.
 Remember: We are all children of gods. They deserve a good life. Your words should help them feel seen, understood, and worthy.`;
 }
 
-function generatePromptZH(godNameZh: string, traitZh: string, quoteZh: string, userInput: string): string {
+function generatePromptZH(godNameZh, traitZh, quoteZh, userInput) {
   return `你是一位来自古希腊神话的温柔、睿智的神谕者。你的任务是为一位守护神是 ${godNameZh} 的人创建个性化的神谕解读。
 
 ## 关于这个人
@@ -301,7 +282,13 @@ ${userInput ? `- 他们分享了这样的困惑/问题："${userInput}"` : ''}
 记住：我们都是神的孩子。他们值得好的生活。你的话语应该帮助他们感到被看见、被理解和值得。`;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+// Configure Serverless Function (supports 60s timeout vs Edge 10s)
+export const config = {
+  runtime: 'nodejs',
+  maxDuration: 60
+};
+
+export default async function handler(request) {
   // Only allow POST requests
   if (request.method !== 'POST') {
     return new Response(
@@ -311,7 +298,7 @@ export default async function handler(request: Request): Promise<Response> {
   }
 
   try {
-    const body: OracleRequest = await request.json();
+    const body = await request.json();
     const { god, godName, godNameZh, trait, traitZh, quote, quoteZh, userInput, lang, answers } = body;
 
     // Validate required fields
@@ -389,7 +376,7 @@ export default async function handler(request: Request): Promise<Response> {
       );
     }
 
-    const result: OracleResponse = { report, isFallback: false };
+    const result = { report, isFallback: false };
 
     return new Response(
       JSON.stringify(result),
@@ -410,9 +397,3 @@ export default async function handler(request: Request): Promise<Response> {
     );
   }
 }
-
-// Configure Serverless Function (supports 60s timeout vs Edge 10s)
-export const config = {
-  runtime: 'nodejs',
-  maxDuration: 60
-};
