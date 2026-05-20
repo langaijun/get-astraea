@@ -509,17 +509,6 @@ function appendStreamedContent(content) {
 }
 
 // Show report content (existing or streamed)
-function showReportContent() {
-  const contentDiv = document.getElementById('reportContent');
-  if (contentDiv) {
-    contentDiv.classList.remove('hidden');
-  }
-}
-
-function displayReport(report) {
-  showReportContent();
-
-  const sectionsContainer = document.getElementById('reportSections');
 
   // Parse report into sections and content blocks
   const blocks = parseReportBlocks(report);
