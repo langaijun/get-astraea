@@ -406,7 +406,7 @@ async function generateReport() {
   };
 
   try {
-    const response = await fetch('/api/oracle.mjs', {
+    const response = await fetch('/api/oracle.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
