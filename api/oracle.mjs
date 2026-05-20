@@ -186,7 +186,7 @@ const GOD_FALLBACK_REPORTS = {
       identity: `## Your Oracle Identity\n\nYou are a messenger of good news. Iris dipped in a waterfall and carried this rainbow message to you.`,
       wisdom: `## The Wisdom Within\n\nYou connect the divided. You see bridges where others see gaps. Hope is what you carry.`,
       tides: `## Navigating Current Tides\n\nLook for the rainbow after rain. Good news is coming. Share it when you find it.`,
-      practices: `## Sacred Practices for Daily Life\n\n- Share good news when you hear it\n- Look for beauty in transitions\n- Be a connector in your circles`,
+      practices: `## Sacred Practices for Daily Life\n\n- Share good news when you hear it\n- Look for beauty in transitions\n- Be the connector in your circles`,
       blessing: `## A Closing Blessing\n\nMay your rainbows be bright, your connections be true, and your hope be contagious.`
     },
     zh: {
@@ -380,6 +380,7 @@ export default async function handler(request) {
       }
 
       const result = { report, isFallback: false };
+
       return new Response(
         JSON.stringify(result),
         {
@@ -433,7 +434,6 @@ async function handleStreamResponse(response) {
                 break;
               }
             }
-          }
         } catch (error) {
           console.error('Stream processing error:', error);
         } finally {
