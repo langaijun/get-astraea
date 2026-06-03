@@ -69,12 +69,12 @@ async function initResultPage() {
   // Setup retake button
   document.getElementById('retakeBtn').addEventListener('click', () => {
     sessionStorage.clear();
-    window.location.href = 'quiz.html';
+    window.location.href = '/';
   });
 
   // Setup retry button
   document.getElementById('retryBtn').addEventListener('click', () => {
-    window.location.href = 'quiz.html';
+    window.location.href = '/';
   });
 
   // Setup share button
