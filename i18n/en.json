@@ -15,7 +15,8 @@
     "title": "Oracle's Whisper",
     "subtitle": "Discover gentle power within you",
     "description": "Find strength in gentle voices from ancient wisdom",
-    "cta": "Begin Your Journey"
+    "cta": "Begin Your Journey",
+    "godsLink": "Explore All 12 Archetypes →"
   },
   "quiz": {
     "storySubtitle": "A Journey of Discovery",
@@ -52,6 +53,26 @@
     "inputPlaceholder": "What would you like guidance on?",
     "inputHint": "Share your confusion, questions, or areas of life you would like the oracle to address...",
     "inputRequired": "Please enter your question. The oracle will create a personalized reading for you."
+  },
+  "bridge": {
+    "wantToGoDeeper": "Want to go deeper with {godName}?",
+    "readFullGuide": "Read the full archetype guide with more stories, daily practices, and how it connects to the book.",
+    "exploreFull": "Explore Full Guide",
+    "alsoResonate": "Other archetypes you might also resonate with:"
+  },
+  "gods": {
+    "book": {
+      "promo": "This archetype is explored in depth in the book <em>Meeting Your Inner Goddess</em>.",
+      "promoBottom": "Dive deeper into this archetype and discover all 12 deities in <em>Meeting Your Inner Goddess</em>.",
+      "buyOnAmazon": "Get Your Copy on Amazon",
+      "buyNow": "Buy on Amazon Now"
+    },
+    "share": {
+      "title": "Share this archetype"
+    },
+    "related": {
+      "title": "People who got {godName} also resonated with:"
+    }
   },
   "footer": {
     "disclaimer": "For entertainment reference only | We are all children of gods, you deserve a good life"

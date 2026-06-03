@@ -15,7 +15,8 @@
     "title": "神谕的低语",
     "subtitle": "发现你内心的温柔力量",
     "description": "在古老智慧的温柔低语中找到力量",
-    "cta": "开启你的旅程"
+    "cta": "开启你的旅程",
+    "godsLink": "探索全部12个原型 →"
   },
   "quiz": {
     "storySubtitle": "发现之旅",
@@ -52,6 +53,12 @@
     "inputPlaceholder": "你希望获得哪方面的指引？",
     "inputHint": "请填写你的困惑、疑问，或希望神谕回应的生活面向……",
     "inputRequired": "请输入您的问题，神谕将为您生成专属解读"
+  },
+  "bridge": {
+    "wantToGoDeeper": "想更深入了解{godName}吗？",
+    "readFullGuide": "阅读完整原型指南，了解更多故事、日常练习，以及它与书籍的关联。",
+    "exploreFull": "探索完整指南",
+    "alsoResonate": "你可能也有共鸣的其他原型："
   },
   "footer": {
     "disclaimer": "仅供娱乐参考 | 我们都是神的孩子，值得好的生活"
@@ -142,5 +149,25 @@
     },
     "cta": "准备好发现你的守护神祇了吗？",
     "takeQuiz": "开始测试"
+  },
+  "bridge": {
+    "wantToGoDeeper": "想更深入了解{godName}吗？",
+    "readFullGuide": "阅读完整原型指南，了解更多故事、日常练习，以及它与书籍的关联。",
+    "exploreFull": "探索完整指南",
+    "alsoResonate": "你可能也有共鸣的其他原型："
+  },
+  "gods": {
+    "book": {
+      "promo": "这个原型在《遇见你心中的女神》一书中有深入探讨。",
+      "promoBottom": "深入探索这个原型，在《遇见你心中的女神》中了解全部12位神祇。",
+      "buyOnAmazon": "在 Amazon 获取你的副本",
+      "buyNow": "立即在 Amazon 购买"
+    },
+    "share": {
+      "title": "分享这个原型"
+    },
+    "related": {
+      "title": "获得{godName}的人也对以下神祇有共鸣："
+    }
   }
 }
