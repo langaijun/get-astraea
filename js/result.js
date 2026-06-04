@@ -191,9 +191,6 @@ function renderResult() {
   if (!hasPaid) {
     renderFreeReading();
   }
-
-  // Render bridge section
-  renderBridgeSection();
 }
 
 function renderFreeReading() {
@@ -608,44 +605,4 @@ function handleShare() {
   };
 
   generateShareCard(shareData);
-}
-
-// Render bridge section with link to full god page and related gods
-function renderBridgeSection() {
-  if (!resultGod) return;
-
-  const lang = getCurrentLang();
-
-  // Update bridge link
-  const bridgeLink = document.getElementById('bridgeLink');
-  if (bridgeLink) {
-    bridgeLink.href = `god/${resultGod.id}.html`;
-  }
-
-  // Update god name in bridge section
-  const bridgeGodName = document.getElementById('bridgeGodName');
-  if (bridgeGodName) {
-    bridgeGodName.textContent = resultGod.name[lang] || resultGod.name.en;
-  }
-
-  // Render related gods (2-3 gods excluding current result)
-  const relatedContainer = document.getElementById('relatedGodsContainer');
-  if (relatedContainer) {
-    const relatedGods = getRelatedGods(resultGod.id, 3);
-
-    relatedContainer.innerHTML = relatedGods.map(god => `
-      <a href="god/${god.id}.html" class="inline-flex items-center px-3 py-2 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-full text-sm transition-colors">
-        <span class="mr-1">${GOD_EMOJIS[god.id] || '🏛️'}</span>
-        <span>${god.name[lang] || god.name.en}</span>
-      </a>
-    `).join('');
-  }
-}
-
-// Get related gods excluding the current one
-function getRelatedGods(currentGodId, count = 3) {
-  // Filter out current god and shuffle the rest
-  const otherGods = gods.filter(g => g.id !== currentGodId);
-  const shuffled = [...otherGods].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
 }
